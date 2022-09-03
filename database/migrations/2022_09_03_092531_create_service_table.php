@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('revision_limit')->nullable();
             $table->string('price')->nullable();
             $table->longText('note')->nullable();
+            $table->boolean('status')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
