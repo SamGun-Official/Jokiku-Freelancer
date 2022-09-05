@@ -2,6 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
+// front ( landing)
+use App\Http\Controllers\Landing\LandingController;
+
+// member ( dashboard )
+use App\Http\Controllers\Dashboard\MemberController;
+use App\Http\Controllers\Dashboard\ServiceController;
+use App\Http\Controllers\Dashboard\RequestController;
+use App\Http\Controllers\Dashboard\MyOrderController;
+use App\Http\Controllers\Dashboard\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
