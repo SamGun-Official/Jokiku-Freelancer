@@ -26,7 +26,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('detail_user', function (Blueprint $table) {
+        Schema::table('review', function (Blueprint $table) {
             $table->dropForeign('fk_review_to_service');
             $table->dropForeign('fk_review_to_users');
         });
