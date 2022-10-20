@@ -29,4 +29,14 @@ class Order extends Model
         'created_at',
         'deleted_at'
     ];
+
+    public function user_buyer()
+    {
+        return $this->belongsTo(User::class, 'buyer_id','id');
+    }
+
+    public function user_freelancer()
+    {
+        return $this->belongsTo(User::class, 'freelancer_id','id');
+    }
 }
