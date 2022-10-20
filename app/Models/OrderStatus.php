@@ -7,5 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderStatus extends Model
 {
-    use HasFactory;
+    // use HasFactory;
+    public $table = "order_status";
+
+
+    protected $dates = [
+        'updated_at',
+        'created_at',
+        'deleted_at'
+    ];
+
+    protected $fillable = [
+        'name',
+        'updated_at',
+        'created_at',
+        'deleted_at'
+    ];
 }
