@@ -45,4 +45,9 @@ class Order extends Model
     {
         return $this->belongsTo(Service::class, 'service_id','id');
     }
+
+    public function order_status()
+    {
+        return $this->belongsTo(OrderStatus::class, 'order_status_id','id');
+    }
 }
