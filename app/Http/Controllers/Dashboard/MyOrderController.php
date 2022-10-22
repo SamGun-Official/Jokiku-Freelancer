@@ -12,9 +12,14 @@ use App\Models\ThumbnailService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Dashboard\MyOrder\UpdateMyOrderRequest;
+use Illuminate\Support\Facades\DB;
 
 class MyOrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +39,7 @@ class MyOrderController extends Controller
      */
     public function create()
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -45,7 +50,7 @@ class MyOrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -85,21 +90,30 @@ class MyOrderController extends Controller
      */
     public function update(UpdateMyOrderRequest $request, Order $order)
     {
-        $data = $request->all();
+        try {
+            DB::beginTransaction();
+            $data = $request->all();
 
-        if (isset($data['file'])){
-            $data['file'] = $request->file('file')->store(
-                'assets/order/attachment', 'public'
-            );
+            if (isset($data['file'])){
+                $data['file'] = $request->file('file')->store(
+                    'assets/order/attachment', 'public'
+                );
 
-            $order = Order::find($order->id);
-            $order->file = $data['file'];
-            $order->note = $data['note'];
-            $order->save();
+                $order = Order::find($order->id);
+                $order->file = $data['file'];
+                $order->note = $data['note'];
+                $order->save();
 
-            toast('Submit order has been success', 'success');
-            return redirect()->route('member.order.index');
+                toast('Submit order has been success', 'success');
+                DB::commit();
+                return redirect()->route('member.order.index');
+            }
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            toast('failed to update', 'error');
+            return back();
         }
+
     }
 
     /**
@@ -110,26 +124,43 @@ class MyOrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return abort(404);
     }
 
     // custom
 
     public function accepted($id){
-        $order = Order::find($id);
-        $order->order_status_id = 2;
-        $order->save();
+        try {
+            DB::beginTransaction();
+            $order = Order::find($id);
+            $order->order_status_id = 2;
+            $order->save();
 
-        toast('Accept order has been success', 'success');
-        return back();
+            toast('Accept order has been success', 'success');
+            DB::commit();
+            return back();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            toast('failed to accept', 'error');
+            return back();
+        }
     }
 
     public function rejected($id){
-        $order = Order::find($id);
-        $order->order_status_id = 3;
-        $order->save();
+        try {
+            DB::beginTransaction();
+            $order = Order::find($id);
+            $order->order_status_id = 3;
+            $order->save();
 
-        toast('Reject order has been success', 'success');
-        return back();
+            toast('Reject order has been success', 'success');
+            DB::commit();
+            return back();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            toast('failed to reject', 'error');
+            return back();
+        }
+
     }
 }

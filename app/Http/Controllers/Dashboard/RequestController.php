@@ -6,9 +6,14 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class RequestController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +33,7 @@ class RequestController extends Controller
      */
     public function create()
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -39,7 +44,7 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -63,7 +68,7 @@ class RequestController extends Controller
      */
     public function edit($id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -75,7 +80,7 @@ class RequestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -86,20 +91,30 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return abort(404);
     }
 
     // custom
 
     public function  approve($id){
-        $order = Order::where('id', $id)->first();
+        try {
+            DB::beginTransaction();
+            $order = Order::where('id', $id)->first();
 
-        // update order
-        $order= Order::find($order['id']);
-        $order->order_status_id = 1;
-        $order->save();
+            // update order
+            $order= Order::find($order['id']);
+            $order->order_status_id = 1;
+            $order->save();
 
-        toast('Approve has been success', 'success');
-        return redirect()->route('member.request.index');
+            toast('Approve has been success', 'success');
+            DB::commit();
+            return redirect()->route('member.request.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            toast('failed to approve', 'error');
+            return back();
+        }
+
     }
 }

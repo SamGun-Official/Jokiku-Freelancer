@@ -178,7 +178,9 @@
                                     </div>
 
                                     <div class="col-span-6">
-                                        <label for="service-name" class="block mb-3 font-medium text-gray-700 text-md">Tagline <span class="text-gray-400">(Optional)</span></label>
+                                        <label for="service-name" class="block mb-3 font-medium text-gray-700 text-md">Tagline </label>
+
+                                        <input placeholder="Tagline" type="text" name="tagline[]" id="tagline" autocomplete="tagline" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>
 
                                         <div id="newTaglineRow"></div>
 

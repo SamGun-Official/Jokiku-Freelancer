@@ -67,7 +67,7 @@
                     <div class="flex flex-nowrap">
 
                         @forelse ($services as $item)
-                            @include('components.landing.service')
+                            @include('component.landing.service')
 
                         @empty
                             {{-- empty --}}

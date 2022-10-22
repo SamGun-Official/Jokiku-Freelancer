@@ -29,7 +29,7 @@
                 <div class="details-heading">
                     <h1 class="text-2xl font-semibold">I {{ $service->title ?? '' }}</h1>
                     <div class="my-3">
-                        @include('components.landing.rating')
+                        @include('component.landing.rating')
                     </div>
                 </div>
                 <div class="p-3 my-4 bg-gray-100 rounded-lg image-gallery" x-data="gallery()">
@@ -84,8 +84,8 @@
                                 <div class="flex items-center col-span-12 p-2 lg:col-span-6">
                                     <div class="flex items-center space-x-4">
 
-                                        @if ($service->users->detail_user->photo != NULL)
-                                            <img src="{{ url(Storage::url($service->users->detail_user->photo)) }}" alt="photo profile" class="w-20 h-20 object-cover rounded-full " loading="lazy">
+                                        @if ($service->user->detail_user->photo != NULL)
+                                            <img src="{{ url(Storage::url($service->user->detail_user->photo)) }}" alt="photo profile" class="w-20 h-20 object-cover rounded-full " loading="lazy">
 
                                         @else
                                             <svg class="w-20 h-20 object-cover rounded-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
@@ -96,7 +96,7 @@
                                     </div>
                                     <div class="flex-grow p-4 -mt-8 leading-8 lg:mt-0">
                                         <div class="text-lg font-semibold text-gray-700">
-                                            {{ $service->users->name ?? '' }}
+                                            {{ $service->user->name ?? '' }}
                                         </div>
                                         <div class="text-gray-400">
                                             Bandung, Indonesia
@@ -105,14 +105,14 @@
                                 </div>
                                 <div class="items-center col-span-12 p-2 lg:col-span-6">
                                     <div class="ml-24 -mt-10 lg:my-6 lg:text-right">
-                                        @include('components.landing.rating')
+                                        @include('component.landing.rating')
                                     </div>
                                 </div>
                             </div>
                             <h3 class="my-4 text-lg font-semibold">Biography</h3>
                             <div class="mt-4 mb-8 content-description">
                                 <p>
-                                    {{ $service->users->detail_user->biography ?? '' }}
+                                    {{ $service->user->detail_user->biography ?? '' }}
                                 </p>
                             </div>
                             <h3 class="my-4 text-lg font-semibold">My Experiences</h3>
@@ -138,9 +138,9 @@
                         </div>
                         <div x-show.transition.duration.500ms="tab === 'reviews'">
                             <h2 class="mb-4 text-xl font-semibold"><span class="text-serv-button">210</span> Happy Clients</h2>
-                            @include('components.landing.review')
-                            @include('components.landing.review')
-                            @include('components.landing.review')
+                            @include('component.landing.review')
+                            @include('component.landing.review')
+                            @include('component.landing.review')
                         </div>
                     </div>
                 </div>
@@ -151,8 +151,8 @@
                     <!--horizantil margin is just for display-->
                     <div class="flex items-start px-4 pt-6">
 
-                        @if ($service->users->detail_user->photo != NULL)
-                            <img src="{{ url(Storage::url($service->users->detail_user->photo)) }}" alt="photo profile" class="object-cover w-16 h-16 mr-4 rounded-full" loading="lazy">
+                        @if ($service->user->detail_user->photo != NULL)
+                            <img src="{{ url(Storage::url($service->user->detail_user->photo)) }}" alt="photo profile" class="object-cover w-16 h-16 mr-4 rounded-full" loading="lazy">
 
                         @else
                             <svg class="object-cover w-16 h-16 mr-4 rounded-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
@@ -161,10 +161,10 @@
                         @endif
                         <div class="w-full">
                             <div class="flex items-center justify-between">
-                                <h2 class="my-1 text-xl font-medium text-serv-bg">{{ $service->users->name ?? '' }}</h2>
+                                <h2 class="my-1 text-xl font-medium text-serv-bg">{{ $service->user->name ?? '' }}</h2>
                             </div>
                             <p class="text-md text-serv-text">
-                                {{ $service->users->detail_user->role ?? '' }}
+                                {{ $service->user->detail_user->role ?? '' }}
                             </p>
                         </div>
                     </div>

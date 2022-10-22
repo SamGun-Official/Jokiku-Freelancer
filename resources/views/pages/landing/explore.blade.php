@@ -33,7 +33,7 @@
                 </nav>
                 <div class="grid grid-cols lg:grid-cols-3 md:grid-cols-2 gap-4">
                     @forelse ($services as $item)
-                        @include('components.landing.service-explore')
+                        @include('component.Landing.service-explorer')
 
                     @empty
                         {{-- empty --}}

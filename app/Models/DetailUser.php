@@ -31,7 +31,7 @@ class DetailUser extends Model
         'deleted_at'
     ];
 
-    public function user()
+    public function users()
     {
         return $this->belongsTo(User::class, 'users_id','id');
     }
