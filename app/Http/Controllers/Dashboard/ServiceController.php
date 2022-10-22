@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\Service;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
@@ -14,7 +16,9 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::where('users_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+
+        return view('pages.dashboard.service.index', compact('services'));
     }
 
     /**
@@ -24,7 +28,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.dashboard.service.create');
     }
 
     /**
