@@ -3,7 +3,7 @@
     <div class="navbar-1-1" style="font-family: 'Poppins', sans-serif">
         <div class=" mx-auto flex flex-wrap flex-row items-center justify-between">
             <a href="{{ route('index') }}" class="flex text-3xl font-bold items-center">
-                SERV
+                Jokiku Freelancer
             </a>
 
             <label for="menu-toggle" class="cursor-pointer lg:hidden block">

@@ -8,7 +8,7 @@
             <!--header-->
             <div class="p-5 rounded-t-xl text-center mt-5 mx-10">
                 <h3 class="text-2xl font-semibold">
-                    Log in to Serv
+                    Log in to Jokiku
                 </h3>
                 <p class="text-gray-400 mt-1 text-sm">
                     Enter your email & password to continue
