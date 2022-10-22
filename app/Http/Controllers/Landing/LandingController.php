@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Landing;
 
-use App\Http\Controllers\Controller;
 use App\Models\Service;
+use App\Models\Tagline;
 use Illuminate\Http\Request;
+use App\Models\AdvantageUser;
+use App\Models\AdvantageService;
+use App\Models\ThumbnailService;
+use App\Http\Controllers\Controller;
 
 class LandingController extends Controller
 {
@@ -95,7 +99,14 @@ class LandingController extends Controller
     }
 
     public function detail($id){
+        $service = Service::where('id', $id)->first();
 
+        $thumbnail = ThumbnailService::where('service_id', $id)->get();
+        $advantage_user = AdvantageUser::where('service_id', $id)->get();
+        $advantage_service = AdvantageService::where('service_id', $id)->get();
+        $tagline = Tagline::where('service_id', $id)->get();
+
+        return view('pages.landing.detail', compact('service', 'thumbnail', 'advantage_user', 'advantage_service', 'tagline'));
     }
 
     public function booking($id){
