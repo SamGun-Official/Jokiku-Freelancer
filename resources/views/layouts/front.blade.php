@@ -16,7 +16,7 @@
 
         @include('includes.landing.header')
 
-            @include('sweetalert::alert')
+            {{-- @include('sweetalert::alert') --}}
 
             @yield('content')
 
@@ -29,9 +29,9 @@
         @stack('after-script')
 
         {{-- modals --}}
-        @include('components.modal.login')
-        @include('components.modal.register')
-        @include('components.modal.register-success')
+        @include('component.modal.login')
+        @include('component.modal.register')
+        @include('component.modal.register-success')
     </div>
 </body>
 </html>

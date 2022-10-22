@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Landing;
 
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -14,7 +15,9 @@ class LandingController extends Controller
      */
     public function index()
     {
-        return abort(404);
+        $services = Service::orderBy('created_at', 'desc')->get();
+
+        return view('pages.landing.index', compact('services'));
     }
 
     /**
