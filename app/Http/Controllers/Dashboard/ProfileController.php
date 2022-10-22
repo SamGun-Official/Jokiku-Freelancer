@@ -137,7 +137,7 @@ class ProfileController extends Controller
             }
         }
 
-        toast()->success('Update has been success');
+        toast('Update has been success', 'success');
 
         return back();
     }
@@ -172,7 +172,7 @@ class ProfileController extends Controller
             File::delete('storage/app/public/'.$path_photo);
         }
 
-        toast()->success('Delete has been success');
+        toast('Delete has been success', 'success');
         return back();
     }
 }

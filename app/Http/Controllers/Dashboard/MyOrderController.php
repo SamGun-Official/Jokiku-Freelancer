@@ -97,7 +97,7 @@ class MyOrderController extends Controller
             $order->note = $data['note'];
             $order->save();
 
-            toast()->success('Submit order has been success');
+            toast('Submit order has been success', 'success');
             return redirect()->route('member.order.index');
         }
     }
@@ -120,7 +120,7 @@ class MyOrderController extends Controller
         $order->order_status_id = 2;
         $order->save();
 
-        toast()->success('Accept order has been success');
+        toast('Accept order has been success', 'success');
         return back();
     }
 
@@ -129,7 +129,7 @@ class MyOrderController extends Controller
         $order->order_status_id = 3;
         $order->save();
 
-        toast()->success('Reject order has been success');
+        toast('Reject order has been success', 'success');
         return back();
     }
 }

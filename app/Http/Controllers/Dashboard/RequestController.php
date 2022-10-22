@@ -99,7 +99,7 @@ class RequestController extends Controller
         $order->order_status_id = 1;
         $order->save();
 
-        toast()->success('Approve has been success');
+        toast('Approve has been success', 'success');
         return redirect()->route('member.request.index');
     }
 }
