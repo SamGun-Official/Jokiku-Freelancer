@@ -2,8 +2,16 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Service;
+use App\Models\Tagline;
 use Illuminate\Http\Request;
+use App\Models\AdvantageUser;
+use App\Models\AdvantageService;
+use App\Models\ThumbnailService;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Dashboard\MyOrder\UpdateMyOrderRequest;
 
 class MyOrderController extends Controller
 {
@@ -14,7 +22,9 @@ class MyOrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::where('freelancer_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+
+        return view('pages.dashboard.order.index', compact('orders'));
     }
 
     /**
@@ -44,9 +54,15 @@ class MyOrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Order $order)
     {
-        //
+        $service = Service::where('id', $order['service_id'])->first();
+        $thumbnail = ThumbnailService::where('service_id', $order['service_id'])->get();
+        $advantage_service = AdvantageService::where('service_id', $order['service_id'])->get();
+        $advantage_user = AdvantageUser::where('service_id', $order['service_id'])->get();
+        $tagline = Tagline::where('service_id', $order['service_id'])->get();
+
+        return view('pages.dashboard.order.detail', compact('order', 'thumbnail', 'advantage_service', 'advantage_user', 'tagline', 'service'));
     }
 
     /**
@@ -57,7 +73,7 @@ class MyOrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('pages.dashboard.order.edit', compact('order'));
     }
 
     /**
@@ -67,9 +83,23 @@ class MyOrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateMyOrderRequest $request, Order $order)
     {
-        //
+        $data = $request->all();
+
+        if (isset($data['file'])){
+            $data['file'] = $request->file('file')->store(
+                'assets/order/attachment', 'public'
+            );
+
+            $order = Order::find($order->id);
+            $order->file = $data['file'];
+            $order->note = $data['note'];
+            $order->save();
+
+            toast()->success('Submit order has been success');
+            return redirect()->route('member.order.index');
+        }
     }
 
     /**
@@ -86,10 +116,20 @@ class MyOrderController extends Controller
     // custom
 
     public function accepted($id){
+        $order = Order::find($id);
+        $order->order_status_id = 2;
+        $order->save();
 
+        toast()->success('Accept order has been success');
+        return back();
     }
 
     public function rejected($id){
+        $order = Order::find($id);
+        $order->order_status_id = 3;
+        $order->save();
 
+        toast()->success('Reject order has been success');
+        return back();
     }
 }
