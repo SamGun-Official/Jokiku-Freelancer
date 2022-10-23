@@ -49,6 +49,13 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sa
     Route::resource('profile', ProfileController::class);
 });
 
+Route::get('/email/verify', function () {
+    if (auth()->user()->email_verified_at != null){
+        return redirect()->route('member.dashboard.index');
+    }
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });

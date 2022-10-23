@@ -1289,6 +1289,10 @@ select{
 	--tw-bg-opacity: 1;
 	background-color: rgba(11, 45, 61, var(--tw-bg-opacity));
 }
+.text-serv-email{
+	--tw-bg-opacity: 1;
+	background-color: rgba(11, 45, 61, var(--tw-bg-opacity));
+}
 .bg-black{
 	--tw-bg-opacity: 1;
 	background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
