@@ -45,6 +45,7 @@ class StoreServiceRequest extends FormRequest
             'note' => [
                 'nullable', 'string', 'max:5000',
             ],
+            'g-recaptcha-response' => ['required', 'recaptchav3:input,0.5']
         ];
     }
 }

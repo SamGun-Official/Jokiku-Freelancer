@@ -48,6 +48,7 @@ class UpdateMyOrderRequest extends FormRequest
             'order_status_id' => [
                 'nullable', 'integer',
             ],
+            'g-recaptcha-response' => ['required', 'recaptchav3:input,0.5']
         ];
     }
 }

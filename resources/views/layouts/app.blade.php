@@ -10,7 +10,7 @@
         @include('includes.dashboard.style')
 
         @stack('after-style')
-
+        {!! RecaptchaV3::initJs() !!}
     </head>
     <body class="antialiased">
         <div class="flex h-screen bg-serv-services-bg" :class="{ 'overflow-hidden': isSideMenuOpen }">

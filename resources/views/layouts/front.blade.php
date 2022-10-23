@@ -10,6 +10,7 @@
     @include('includes.landing.style')
 
     @stack('after-style')
+    {!! RecaptchaV3::initJs() !!}
 </head>
 <body class="antialiased">
     <div class="relative">

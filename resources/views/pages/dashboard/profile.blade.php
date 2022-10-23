@@ -140,6 +140,13 @@
                                             @endforelse
 
                                         </div>
+
+                                        <div class="col-span-6">
+                                            {!! RecaptchaV3::field('input') !!}
+                                            @if ($errors->has('g-recaptcha-response'))
+                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('g-recaptcha-response') }}</p>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
 

@@ -34,6 +34,7 @@ class UpdateProfileRequest extends FormRequest
             'email' => [
                 'required', 'string', 'max:255', 'email', Rule::unique('users')->where('id', '<>', Auth::user()->id),
             ],
+            'g-recaptcha-response' => ['required', 'recaptchav3:input,0.5']
         ];
     }
 }

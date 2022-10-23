@@ -122,6 +122,13 @@
                                         <label for="service-name" class="block mb-3 font-medium text-gray-700 text-md">Note</label>
                                         <textarea placeholder="Enter your biography here.." type="text" name="service-name" id="service-name" autocomplete="service-name" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" rows="4" readonly>{{ $order->note ?? '' }}</textarea>
                                     </div>
+
+                                    <div class="col-span-6">
+                                        {!! RecaptchaV3::field('input') !!}
+                                        @if ($errors->has('g-recaptcha-response'))
+                                            <p class="text-red-500 mb-3 text-sm">{{ $errors->first('g-recaptcha-response') }}</p>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                             <div class="px-1 py-4 text-right">
