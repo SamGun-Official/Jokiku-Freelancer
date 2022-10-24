@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 // front ( landing)
@@ -28,7 +29,8 @@ Route::get('detail/{id}', [LandingController::class, 'detail'])->name('detail.la
 Route::get('explore', [LandingController::class, 'explore'])->name('explore.landing');
 Route::resource('/', LandingController::class);
 
-Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sanctum', 'verified']], function () {
+
+Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sanctum', 'verified', 'role:user']], function () {
     // dashboard
     Route::resource('dashboard', MemberController::class);
 
@@ -48,6 +50,13 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sa
     Route::get('delete_photo', [ProfileController::class, 'delete'])->name('delete.photo.profile');
     Route::resource('profile', ProfileController::class);
 });
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth:sanctum', 'verified', 'role:admin']], function () {
+    // dashboard
+    Route::resource('dashboard', DashboardController::class);
+
+});
+
 
 Route::get('/email/verify', function () {
     if (auth()->user()->email_verified_at != null){

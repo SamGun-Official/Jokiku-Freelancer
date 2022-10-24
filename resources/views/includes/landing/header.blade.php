@@ -25,10 +25,13 @@
                     <a href="#" class="block nav-link text-serv-text">How It Works</a>
                     <a href="#" class="block nav-link text-serv-text">Stories</a>
                     <a href="#" class="block nav-link text-serv-text">Tips</a>
-
                     @auth
                         <hr class="block lg:hidden">
-                        <a href="{{ route('member.dashboard.index') }}" class="block lg:hidden nav-link text-serv-text">Dashboard</a>
+                        @if (Auth::user()->role == "admin")
+                            <a href="{{ route('admin.dashboard.index') }}" class="block lg:hidden nav-link text-serv-text">Admin</a>
+                        @else
+                            <a href="{{ route('member.dashboard.index') }}" class="block lg:hidden nav-link text-serv-text">User</a>
+                        @endif
 
                         <a href="{{ route('logout') }}" class="block lg:hidden nav-link text-serv-text" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout
                             <form action="{{ route('logout') }}" id="logout-form" method="POST" style="display: none">
@@ -81,7 +84,11 @@
                     <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
 
                         <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
-                            <a class="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="{{ route('member.dashboard.index') }}">Dashboard</a>
+                            @if (Auth::user()->role == "admin")
+                                <a class="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="{{ route('admin.dashboard.index') }}">Dashboard</a>
+                            @else
+                                <a class="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="{{ route('member.dashboard.index') }}">Dashboard</a>
+                            @endif
 
                             <a class="block px-4 py-2 mt-2 text-sm bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout
                             <form action="{{ route('logout') }}" id="logout-form" method="POST" style="display: none">
