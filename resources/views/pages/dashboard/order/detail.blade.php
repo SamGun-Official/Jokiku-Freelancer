@@ -52,7 +52,7 @@
                                 <div class="details-heading">
                                     <h1 class="text-2xl font-semibold">{{ $order->service->title ?? '' }}</h1>
                                     <div class="my-3">
-                                        @include('components.dashboard.rating')
+                                        @include('component.dashboard.rating')
                                     </div>
                                 </div>
                                 <div class="p-3 my-4 bg-gray-100 rounded-lg image-gallery" x-data="gallery()">

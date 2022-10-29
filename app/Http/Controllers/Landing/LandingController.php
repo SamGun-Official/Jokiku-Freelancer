@@ -123,7 +123,7 @@ class LandingController extends Controller
 
         $order = new Order;
         $order->buyer_id = $user_buyer;
-        $order->freelancer_id = $service->users->id;
+        $order->freelancer_id = $service->user->id;
         $order->service_id = $service->id;
         $order->file = NULL;
         $order->note = NULL;

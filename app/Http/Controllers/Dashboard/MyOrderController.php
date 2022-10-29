@@ -76,7 +76,7 @@ class MyOrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Order $order)
     {
         return view('pages.dashboard.order.edit', compact('order'));
     }
