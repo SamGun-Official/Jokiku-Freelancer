@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Exports\ReportExport;
+use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller
 {
@@ -14,7 +17,8 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+        return view('pages.admin.master.report', compact('orders'));
     }
 
     /**
@@ -81,5 +85,10 @@ class ReportController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function downloadReport()
+    {
+        return Excel::download(new ReportExport, 'Report.xlsx');
     }
 }

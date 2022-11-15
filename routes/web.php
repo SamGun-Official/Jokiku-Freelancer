@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\BanController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use Illuminate\Support\Facades\Route;
 
 // front ( landing)
@@ -54,6 +57,14 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sa
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth:sanctum', 'verified', 'role:admin']], function () {
     // dashboard
     Route::resource('dashboard', DashboardController::class);
+    Route::resource('user', BanController::class);
+    Route::resource('report', ReportController::class);
+    Route::resource('service', AdminServiceController::class);
+
+    Route::get('accept/service/{id}', [AdminServiceController::class, 'approve'])->name('approve.service');
+    Route::get('reject/service/{id}', [AdminServiceController::class, 'reject'])->name('reject.service');
+
+    Route::get('downloadReport', [ReportController::class, 'downloadReport'])->name('downloadReport');
 
 });
 

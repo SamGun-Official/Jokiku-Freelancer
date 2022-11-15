@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class BanController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $users = User::where('role', 'user')->get();
-        if (isset($request->search)){
-            $users = User::where('role', 'user')->where('name', 'like', '%'. $request->search . '%')->get();
-        }
-        return view('pages.admin.master.user', compact('users'));
+        $services = Service::where('status', '0')->get();
+        return view('pages.admin.master.service', compact('services'));
     }
 
     /**
@@ -62,21 +59,7 @@ class BanController extends Controller
      */
     public function edit($id)
     {
-        $user = User::where('id', $id)->first();
-        $ban_status = 0;
-        if ($user->ban_status == 0){
-            $ban_status = 1;
-        }
-        else{
-            $ban_status = 0;
-        }
-
-        $result = User::where('id', $id)->update([
-            "ban_status" => $ban_status
-        ]);
-
-        toast('Success', 'success');
-        return back();
+        abort(404);
     }
 
     /**
@@ -100,5 +83,22 @@ class BanController extends Controller
     public function destroy($id)
     {
         abort(404);
+    }
+
+    public function approve($id)
+    {
+        $service = Service::where('id', $id)->update([
+            "status" => '1'
+        ]);
+        toast('Approved', 'success');
+        return back();
+    }
+    public function reject($id)
+    {
+        $service = Service::where('id', $id)->update([
+            "status" => '2'
+        ]);
+        toast('Reject', 'success');
+        return back();
     }
 }

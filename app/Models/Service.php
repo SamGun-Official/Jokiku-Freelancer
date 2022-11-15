@@ -28,6 +28,7 @@ class Service extends Model
         'revision_limit',
         'price',
         'note',
+        'status',
         'updated_at',
         'created_at',
         'deleted_at'

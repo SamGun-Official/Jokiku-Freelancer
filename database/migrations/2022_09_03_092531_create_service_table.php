@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('revision_limit')->nullable();
             $table->string('price')->nullable();
             $table->longText('note')->nullable();
-            $table->boolean('status')->nullable();
+            $table->enum('status', ['0', '1', '2'])->default(0);
             $table->softDeletes();
             $table->timestamps();
         });
