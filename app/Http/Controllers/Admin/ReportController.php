@@ -28,7 +28,7 @@ class ReportController extends Controller
      */
     public function create()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -39,7 +39,7 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -50,7 +50,7 @@ class ReportController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -61,7 +61,7 @@ class ReportController extends Controller
      */
     public function edit($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -73,7 +73,7 @@ class ReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -84,7 +84,7 @@ class ReportController extends Controller
      */
     public function destroy($id)
     {
-        //
+        abort(404);
     }
 
     public function downloadReport()
