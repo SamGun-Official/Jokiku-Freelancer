@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html x-data="data()" lang="en">
     <head>
+
         @include('includes.dashboard.meta')
 
         <title>@yield('title') | SERV</title>

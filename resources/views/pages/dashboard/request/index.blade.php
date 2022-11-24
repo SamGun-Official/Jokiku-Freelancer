@@ -100,7 +100,13 @@
                                         <a href="{{ route('member.request.show', $order->id) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
                                             Details
                                         </a>
+                                        @if ($order->order_status_id == '1')
+                                            <a href="{{ route('member.request.rating', $order->id) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-blue-300">
+                                                Rating and Review
+                                            </a>
+                                        @endif
                                     </td>
+
                                 </tr>
 
                             @empty

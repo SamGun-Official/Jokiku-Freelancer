@@ -43,6 +43,8 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sa
     // request
     Route::get('approve_request/{id}', [RequestController::class, 'approve'])->name('approve.request');
     Route::resource('request', RequestController::class);
+    Route::get('request/{id}/rating',[RequestController::class,'rating'])->name('request.rating');
+    Route::post('request/{id}/rating/submit',[RequestController::class,'rating_submit'])->name('request.rating.submit');
 
     // my order
     Route::get('accept/order/{id}', [MyOrderController::class, 'accepted'])->name('accept.order');

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('review', function (Blueprint $table) {
-            $table->foreign('service_id','fk_review_to_service')->references('id')->on('service')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('service_id','fk_review_to_order')->references('id')->on('service')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->foreign('users_id','fk_review_to_users')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
