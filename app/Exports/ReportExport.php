@@ -33,7 +33,7 @@ class ReportExport implements FromCollection, WithHeadings, WithColumnFormatting
     public function columnFormats(): array
     {
         return [
-            'D' => NumberFormat::FORMAT_CURRENCY_EUR_SIMPLE,
+            // 'D' => NumberFormat::Format_,
         ];
     }
 }
