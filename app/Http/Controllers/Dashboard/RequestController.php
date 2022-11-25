@@ -62,32 +62,6 @@ class RequestController extends Controller
         return view('pages.dashboard.request.detail', compact('order'));
     }
 
-    public function rating($id)
-    {
-        $order = Order::where('id',$id)->first();
-        // $hasReview = false;
-        $review = Review::where('service_id',$order->service_id)->where('users_id',Auth::user()->id)->first();
-        return view('pages.dashboard.request.rating', compact('order','review'));
-    }
-
-    public function rating_submit(Request $request, $id)
-    {
-        $request->validate([
-            'rating' => 'required|integer|min:1|max:5',
-            'review' => 'required',
-        ]);
-
-        $order = Order::where('id',$id)->first();
-        Review::create([
-            'users_id' => Auth::user()->id,
-            'service_id' => $order->service_id,
-            'comment' => $request->review,
-            'rating' => $request->rating,
-        ]);
-
-        return redirect()->route('member.request.index');
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -144,5 +118,30 @@ class RequestController extends Controller
             return back();
         }
 
+    }
+
+
+    public function rating($id)
+    {
+        $order = Order::where('id',$id)->first();
+        $review = Review::where('order_id',$id)->where('users_id',Auth::user()->id)->first();
+        return view('pages.dashboard.request.rating', compact('order','review'));
+    }
+
+    public function rating_submit(Request $request, $id)
+    {
+        $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+            'review' => 'required',
+        ]);
+
+        Review::create([
+            'users_id' => Auth::user()->id,
+            'order_id' => $id,
+            'comment' => $request->review,
+            'rating' => $request->rating,
+        ]);
+
+        return redirect()->route('member.request.index');
     }
 }

@@ -50,4 +50,9 @@ class Order extends Model
     {
         return $this->belongsTo(OrderStatus::class, 'order_status_id','id');
     }
+
+    public function review()
+    {
+        return $this->hasMany(Review::class, 'service_id','id');
+    }
 }

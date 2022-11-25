@@ -62,8 +62,4 @@ class Service extends Model
         return $this->hasMany(Order::class,'service_id');
     }
 
-    public function review()
-    {
-        return $this->hasMany(Review::class, 'service_id');
-    }
 }

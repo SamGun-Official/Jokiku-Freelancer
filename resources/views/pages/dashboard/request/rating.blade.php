@@ -30,7 +30,7 @@
                                 <th class="py-4" scope="">Freelancer Name</th>
                                 <th class="py-4" scope="">Service Details</th>
                                 <th class="py-4" scope="">Service Price</th>
-                                <th class="py-4" scope="">Service Deadline</th>
+                                {{-- <th class="py-4" scope="">Service Deadline</th> --}}
                             </tr>
                         </thead>
                         <tbody class="bg-white">
@@ -78,14 +78,14 @@
                                 <td class="px-1 py-5 text-sm">
                                     {{ 'Rp '.number_format($order->service->price) ?? '' }}
                                 </td>
-                                <td class="px-1 py-5 text-xs text-red-500">
+                                {{-- <td class="px-1 py-5 text-xs text-red-500">
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline mb-1">
                                         <path d="M7.0002 12.8332C10.2219 12.8332 12.8335 10.2215 12.8335 6.99984C12.8335 3.77818 10.2219 1.1665 7.0002 1.1665C3.77854 1.1665 1.16687 3.77818 1.16687 6.99984C1.16687 10.2215 3.77854 12.8332 7.0002 12.8332Z" stroke="#F26E6E" stroke-linecap="round" stroke-linejoin="round" />
                                         <path d="M7 3.5V7L9.33333 8.16667" stroke="#F26E6E" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
 
                                     {{ (strtotime($order->expired) - strtotime(date('Y-m-d'))) / 86400 ?? '' }} days left
-                                </td>
+                                </td> --}}
                             </tr>
                         </tbody>
                     </table>
@@ -94,12 +94,27 @@
 
                     @if($review)
                         <div>
-                            <label for="service-name" class="block mb-3 mx-1 font-medium text-gray-700 text-md">Rating</label>
-                            <span>{{ $review->rating }}</span>
+                            <label for="service-name" class="mb-1 mx-1 font-medium text-gray-700 text-md">Rating</label>
+                            @for ($i = 0; $i < 5; $i++)
+                                @if ($i < $review->rating)
+                                    <svg width="18" height="16" viewBox="0 0 26 24" fill="none"
+                                    class="inline align-sub" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12.0489 0.927052C12.3483 0.00574112 13.6517 0.00573993 13.9511 0.927051L16.1432 7.67376C16.2771 8.08578 16.661 8.36475 17.0943 8.36475H24.1882C25.1569 8.36475 25.5597 9.60436 24.7759 10.1738L19.0369 14.3435C18.6864 14.5981 18.5397 15.0495 18.6736 15.4615L20.8657 22.2082C21.1651 23.1295 20.1106 23.8956 19.3269 23.3262L13.5878 19.1565C13.2373 18.9019 12.7627 18.9019 12.4122 19.1565L6.67312 23.3262C5.88941 23.8956 4.83493 23.1295 5.13428 22.2082L7.32642 15.4615C7.46029 15.0495 7.31363 14.5981 6.96315 14.3435L1.22405 10.1738C0.440337 9.60436 0.843112 8.36475 1.81184 8.36475H8.90575C9.33897 8.36475 9.72293 8.08578 9.8568 7.67376L12.0489 0.927052Z"
+                                            fill="#FFBF47" />
+                                    </svg>
+                                @else
+                                    <svg width="18" height="16" viewBox="0 0 26 24" fill="none"
+                                    class="inline align-sub" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12.0489 0.927052C12.3483 0.00574112 13.6517 0.00573993 13.9511 0.927051L16.1432 7.67376C16.2771 8.08578 16.661 8.36475 17.0943 8.36475H24.1882C25.1569 8.36475 25.5597 9.60436 24.7759 10.1738L19.0369 14.3435C18.6864 14.5981 18.5397 15.0495 18.6736 15.4615L20.8657 22.2082C21.1651 23.1295 20.1106 23.8956 19.3269 23.3262L13.5878 19.1565C13.2373 18.9019 12.7627 18.9019 12.4122 19.1565L6.67312 23.3262C5.88941 23.8956 4.83493 23.1295 5.13428 22.2082L7.32642 15.4615C7.46029 15.0495 7.31363 14.5981 6.96315 14.3435L1.22405 10.1738C0.440337 9.60436 0.843112 8.36475 1.81184 8.36475H8.90575C9.33897 8.36475 9.72293 8.08578 9.8568 7.67376L12.0489 0.927052Z"
+                                            fill="#808080" />
+                                    </svg>
+                                @endif
+                            @endfor
 
-                            <div>
-                                Review
-                                <div>
+                            <label for="service-name" class="block mt-3 mx-1 font-medium text-gray-700 text-md">Review</label>
+                                <div class="border border-spacing-1 p-3 rounded-md text-sm">
                                     {{ $review->comment }}
                                 </div>
                             </div>
@@ -116,15 +131,8 @@
                             @csrf
                             <div>
                                 <label for="service-name" class="block mb-3 mx-1 font-medium text-gray-700 text-md">Rating</label>
-                                {{-- <div class="m-1 flex">
-                                    <svg id="star1" aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>First star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    <svg id="star2" aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Second star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    <svg id="star3" aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Third star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    <svg id="star4" aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fourth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    <svg id="star5" aria-hidden="true" class="w-5 h-5 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fifth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    <input type="hidden" name="rating" value="1" id="rating">
-                                </div> --}}
-                                <input type="number" class="form-control w-2/6 h-2/6" name="rating" min="1" max="5" id="">
+
+                                <input type="number" class="form-control w-2/6 h-2/6 m-2" name="rating" min="1" max="5" id="" value="1">
                             </div>
                             <div class="">
                                 <div class="p-1 mt-5">
@@ -156,55 +164,5 @@
         </div>
     </section>
 </main>
-
-<script>
-    // let star1 = document.querySelector("#star1");
-    // let star2 = document.querySelector("#star2");
-    // let star3 = document.querySelector("#star3");
-    // let star4 = document.querySelector("#star4");
-    // let star5 = document.querySelector("#star5");
-    // let rating = document.querySelector("#rating");
-    // star1.addEventListener('click', () => {
-    //     rating = 1;
-    //     star1.className = "w-5 h-5 text-yellow-400";
-    //     star2.className = "w-5 h-5 text-gray-300 dark:text-gray-500";
-    //     star3.className = "w-5 h-5 text-gray-300 dark:text-gray-500";
-    //     star4.className = "w-5 h-5 text-gray-300 dark:text-gray-500";
-    //     star5.className = "w-5 h-5 text-gray-300 dark:text-gray-500";
-    //     console.log(star2);
-    // });
-    // star2.addEventListener('click', () => {
-    //     rating = 2;
-    //     star1.className = "w-5 h-5 text-yellow-400";
-    //     star2.className = "w-5 h-5 text-yellow-400";
-    //     star3.className = "w-5 h-5 text-gray-300 dark:text-gray-500";
-    //     star4.className = "w-5 h-5 text-gray-300 dark:text-gray-500";
-    //     star5.className = "w-5 h-5 text-gray-300 dark:text-gray-500";
-    // });
-    // star3.addEventListener('click', () => {
-    //     rating = 3;
-    //     star1.className = "w-5 h-5 text-yellow-400";
-    //     star2.className = "w-5 h-5 text-yellow-400";
-    //     star3.className = "w-5 h-5 text-yellow-400";
-    //     star4.className = "w-5 h-5 text-gray-300 dark:text-gray-500";
-    //     star5.className = "w-5 h-5 text-gray-300 dark:text-gray-500";
-    // });
-    // star4.addEventListener('click', () => {
-    //     rating = 4;
-    //     star1.className = "w-5 h-5 text-yellow-400";
-    //     star2.className = "w-5 h-5 text-yellow-400";
-    //     star3.className = "w-5 h-5 text-yellow-400";
-    //     star4.className = "w-5 h-5 text-yellow-400";
-    //     star5.className = "w-5 h-5 text-gray-300 dark:text-gray-500";
-    // });
-    // star5.addEventListener('click', () => {
-    //     rating = 5;
-    //     star1.className = "w-5 h-5 text-yellow-400";
-    //     star2.className = "w-5 h-5 text-yellow-400";
-    //     star3.className = "w-5 h-5 text-yellow-400";
-    //     star4.className = "w-5 h-5 text-yellow-400";
-    //     star5.className = "w-5 h-5 text-yellow-400";
-    // });
-</script>
 
 @endsection

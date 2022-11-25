@@ -22,15 +22,15 @@ class Review extends Model
     ];
 
     protected $fillable = [
-        'service_id',
+        'order_id',
         'users_id',
         'comment',
         'rating',
     ];
 
-    public function service()
+    public function order()
     {
-        return $this->belongsTo(Service::class, 'service_id','id');
+        return $this->belongsTo(Order::class, 'order_id','id');
     }
 
     public function user()
