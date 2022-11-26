@@ -5,10 +5,10 @@
             <!--header-->
             <div class="p-5 rounded-t-xl text-center mt-5 mx-10">
                 <h3 class="text-2xl font-semibold">
-                    Sign up to Serv
+                    Sign up to Jokiku
                 </h3>
                 <p class="text-gray-400 mt-1 text-sm">
-                    Join Serv and start your real project
+                    Join Jokiku and start your real project
                 </p>
             </div>
             <form action="{{ route('register') }}" method="POST">
