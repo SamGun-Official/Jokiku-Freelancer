@@ -10,6 +10,7 @@ use App\Models\AdvantageService;
 use App\Models\ThumbnailService;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 
 class LandingController extends Controller
@@ -107,8 +108,9 @@ class LandingController extends Controller
         $advantage_user = AdvantageUser::where('service_id', $id)->get();
         $advantage_service = AdvantageService::where('service_id', $id)->get();
         $tagline = Tagline::where('service_id', $id)->get();
+        $review = Order::join('review','review.order_id','order.id')->where('service_id',$id)->orderByDesc('rating')->get();
 
-        return view('pages.landing.detail', compact('service', 'thumbnail', 'advantage_user', 'advantage_service', 'tagline'));
+        return view('pages.landing.detail', compact('service', 'thumbnail', 'advantage_user', 'advantage_service', 'tagline','review'));
     }
 
     public function booking($id){

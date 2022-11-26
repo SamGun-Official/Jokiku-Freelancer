@@ -137,10 +137,55 @@
                             </p>
                         </div>
                         <div x-show.transition.duration.500ms="tab === 'reviews'">
-                            <h2 class="mb-4 text-xl font-semibold"><span class="text-serv-button">210</span> Happy Clients</h2>
-                            @include('component.landing.review')
-                            @include('component.landing.review')
-                            @include('component.landing.review')
+                            <h2 class="mb-4 text-xl font-semibold"><span class="text-serv-button">{{ sizeof($review) }}</span> Total Reviews</h2>
+                            @foreach ($review as $item)
+                                <div class="flex border border-serv-testimonial-border rounded-lg mb-4"><!--horizantil margin is just for display-->
+                                    <div class="flex items-start px-4 py-6">
+                                        @if ($item->user_buyer->detail_user->photo != NULL)
+                                            <img class="w-16 h-16 rounded-full object-cover mr-4" src="{{ url(Storage::url($item->user_buyer->detail_user->photo)) }}" alt="photo profile">
+                                        @else
+                                            <svg class="w-16 h-16 rounded-full object-cover mr-4 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                            </svg>
+                                        @endif
+                                        <div class="w-full">
+                                            <div class="flex items-center justify-between">
+                                                <h2 class="text-xl font-medium text-serv-bg my-1">{{ $item->user_buyer->name }}</h2>
+                                            </div>
+                                            <p class="text-md">
+                                                @for ($i = 0; $i < 5; $i++)
+                                                    @if ($i < $item->rating)
+                                                        <svg width="14" height="13" viewBox="0 0 26 24" fill="none"
+                                                        class="inline align-sub" xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M12.0489 0.927052C12.3483 0.00574112 13.6517 0.00573993 13.9511 0.927051L16.1432 7.67376C16.2771 8.08578 16.661 8.36475 17.0943 8.36475H24.1882C25.1569 8.36475 25.5597 9.60436 24.7759 10.1738L19.0369 14.3435C18.6864 14.5981 18.5397 15.0495 18.6736 15.4615L20.8657 22.2082C21.1651 23.1295 20.1106 23.8956 19.3269 23.3262L13.5878 19.1565C13.2373 18.9019 12.7627 18.9019 12.4122 19.1565L6.67312 23.3262C5.88941 23.8956 4.83493 23.1295 5.13428 22.2082L7.32642 15.4615C7.46029 15.0495 7.31363 14.5981 6.96315 14.3435L1.22405 10.1738C0.440337 9.60436 0.843112 8.36475 1.81184 8.36475H8.90575C9.33897 8.36475 9.72293 8.08578 9.8568 7.67376L12.0489 0.927052Z"
+                                                                fill="#FFBF47" />
+                                                        </svg>
+                                                    @else
+                                                        <svg width="14" height="13" viewBox="0 0 26 24" fill="none"
+                                                        class="inline align-sub" xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M12.0489 0.927052C12.3483 0.00574112 13.6517 0.00573993 13.9511 0.927051L16.1432 7.67376C16.2771 8.08578 16.661 8.36475 17.0943 8.36475H24.1882C25.1569 8.36475 25.5597 9.60436 24.7759 10.1738L19.0369 14.3435C18.6864 14.5981 18.5397 15.0495 18.6736 15.4615L20.8657 22.2082C21.1651 23.1295 20.1106 23.8956 19.3269 23.3262L13.5878 19.1565C13.2373 18.9019 12.7627 18.9019 12.4122 19.1565L6.67312 23.3262C5.88941 23.8956 4.83493 23.1295 5.13428 22.2082L7.32642 15.4615C7.46029 15.0495 7.31363 14.5981 6.96315 14.3435L1.22405 10.1738C0.440337 9.60436 0.843112 8.36475 1.81184 8.36475H8.90575C9.33897 8.36475 9.72293 8.08578 9.8568 7.67376L12.0489 0.927052Z"
+                                                                fill="#808080" />
+                                                        </svg>
+                                                    @endif
+                                                @endfor
+                                                <span class="text-serv-yellow font-medium mt-2 inline align-sub">{{ $item->rating }}</span>
+                                            </p>
+                                            <p class="mt-3 text-gray-700 text-md leading-8">
+                                            {{ $item->comment }}
+                                            </p>
+                                            <div class="mt-4 flex items-center">
+                                                <div class="flex mr-2 text-serv-text text-md">
+                                                    Published in {{  date("d F Y" ,strtotime($item->updated_at)) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
+
                         </div>
                     </div>
                 </div>
