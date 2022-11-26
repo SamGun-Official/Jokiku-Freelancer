@@ -102,7 +102,7 @@
                                         </a>
                                         @if ($order->order_status_id == '1')
                                             <a href="{{ route('member.request.rating', $order->id) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-blue-500">
-                                                Rating
+                                                Review
                                             </a>
                                         @endif
                                     </td>

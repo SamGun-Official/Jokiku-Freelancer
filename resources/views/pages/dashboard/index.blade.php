@@ -215,7 +215,7 @@
                             Top Reviews
                         </h2>
                         <p class="text-sm text-gray-400">
-                            48 Total Reviews
+                            {{ sizeof($reviews) }} Total Reviews
                         </p>
                     </div>
                     <table class="w-full" aria-label="Table">
@@ -226,92 +226,48 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white">
-                            <tr class="text-gray-700">
-                                <td class="w-1/2 px-1 py-2">
-                                    <div class="flex items-center text-sm">
-                                        <div class="relative w-10 h-10 mr-3 rounded-full md:block">
-                                            <img class="object-cover w-full h-full rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/2.jpg') }}" alt="" loading="lazy" />
-                                            <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                            @foreach ($reviews as $key => $item)
+                                <tr class="text-gray-700">
+                                    <td class="w-1/2 px-1 py-2">
+                                        <div class="flex items-center text-sm">
+                                            <div class="relative w-10 h-10 mr-3 rounded-full md:block">
+                                                @if ($item->user_buyer->detail_user->photo != NULL)
+                                                    <img class="inline w-full h-full mr-3 rounded-full" src="{{ url(Storage::url($item->user_buyer->detail_user->photo)) }}" alt="photo profile">
+                                                @else
+                                                    <svg class="inline w-full h-full mr-3 rounded-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                                    </svg>
+                                                @endif
+                                                <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                                            </div>
+                                            <div>
+                                                <p class="font-medium text-black">{{ $item->user_buyer->name }}</p>
+                                                <p class="text-sm text-gray-400">{{ date("d M Y" ,strtotime($item->updated_at))}}</p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <p class="font-medium text-black">Sarah Roses</p>
-                                            <p class="text-sm text-gray-400">1 May 2021</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="w-1/2 px-1 py-5 text-xs text-right text-red-500">
-                                    @include('component.dashboard.rating')
-                                </td>
-                            </tr>
-                            <tr class="text-gray-700">
-                                <td class="w-1/2 px-1 py-2">
-                                    <div class="flex items-center text-sm">
-                                        <div class="relative w-10 h-10 mr-3 rounded-full md:block">
-                                            <img class="object-cover w-full h-full rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/3.jpg') }}" alt="" loading="lazy" />
-                                            <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                                        </div>
-                                        <div>
-                                            <p class="font-medium text-black">Sarah Roses</p>
-                                            <p class="text-sm text-gray-400">1 May 2021</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="w-1/2 px-1 py-5 text-xs text-right text-red-500">
-                                    @include('component.dashboard.rating')
-                                </td>
-                            </tr>
-                            <tr class="text-gray-700">
-                                <td class="w-1/2 px-1 py-2">
-                                    <div class="flex items-center text-sm">
-                                        <div class="relative w-10 h-10 mr-3 rounded-full md:block">
-                                            <img class="object-cover w-full h-full rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/4.jpg') }}" alt="" loading="lazy" />
-                                            <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                                        </div>
-                                        <div>
-                                            <p class="font-medium text-black">Sarah Roses</p>
-                                            <p class="text-sm text-gray-400">1 May 2021</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="w-1/2 px-1 py-5 text-xs text-right text-red-500">
-                                    @include('component.dashboard.rating')
-                                </td>
-                            </tr>
-                            <tr class="text-gray-700">
-                                <td class="w-1/2 px-1 py-2">
-                                    <div class="flex items-center text-sm">
-                                        <div class="relative w-10 h-10 mr-3 rounded-full md:block">
-                                            <img class="object-cover w-full h-full rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/5.jpg') }}" alt="" loading="lazy" />
-                                            <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                                        </div>
-                                        <div>
-                                            <p class="font-medium text-black">Sarah Roses</p>
-                                            <p class="text-sm text-gray-400">1 May 2021</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="w-1/2 px-1 py-5 text-xs text-right text-red-500">
-                                    @include('component.dashboard.rating')
-                                </td>
-                            </tr>
-                            <tr class="text-gray-700">
-                                <td class="w-1/2 px-1 py-2">
-                                    <div class="flex items-center text-sm">
-                                        <div class="relative w-10 h-10 mr-3 rounded-full md:block">
-                                            <img class="object-cover w-full h-full rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/6.jpg') }}" alt="" loading="lazy" />
-                                            <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                                        </div>
-                                        <div>
-                                            <p class="font-medium text-black">Sarah Roses</p>
-                                            <p class="text-sm text-gray-400">1 May 2021</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="w-1/2 px-1 py-5 text-xs text-right text-red-500">
-                                    @include('component.dashboard.rating')
-                                </td>
-                            </tr>
-
+                                    </td>
+                                    <td class="w-1/2 px-1 py-5 text-xs text-right text-red-500">
+                                        {{-- @include('component.dashboard.rating') --}}
+                                        @for ($i = 0; $i < 5; $i++)
+                                            @if ($i < $item->rating)
+                                                <svg width="20" height="19" viewBox="0 0 26 24" fill="none"
+                                                class="inline align-sub" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M12.0489 0.927052C12.3483 0.00574112 13.6517 0.00573993 13.9511 0.927051L16.1432 7.67376C16.2771 8.08578 16.661 8.36475 17.0943 8.36475H24.1882C25.1569 8.36475 25.5597 9.60436 24.7759 10.1738L19.0369 14.3435C18.6864 14.5981 18.5397 15.0495 18.6736 15.4615L20.8657 22.2082C21.1651 23.1295 20.1106 23.8956 19.3269 23.3262L13.5878 19.1565C13.2373 18.9019 12.7627 18.9019 12.4122 19.1565L6.67312 23.3262C5.88941 23.8956 4.83493 23.1295 5.13428 22.2082L7.32642 15.4615C7.46029 15.0495 7.31363 14.5981 6.96315 14.3435L1.22405 10.1738C0.440337 9.60436 0.843112 8.36475 1.81184 8.36475H8.90575C9.33897 8.36475 9.72293 8.08578 9.8568 7.67376L12.0489 0.927052Z"
+                                                        fill="#FFBF47" />
+                                                </svg>
+                                            @else
+                                                <svg width="20" height="19" viewBox="0 0 26 24" fill="none"
+                                                class="inline align-sub" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M12.0489 0.927052C12.3483 0.00574112 13.6517 0.00573993 13.9511 0.927051L16.1432 7.67376C16.2771 8.08578 16.661 8.36475 17.0943 8.36475H24.1882C25.1569 8.36475 25.5597 9.60436 24.7759 10.1738L19.0369 14.3435C18.6864 14.5981 18.5397 15.0495 18.6736 15.4615L20.8657 22.2082C21.1651 23.1295 20.1106 23.8956 19.3269 23.3262L13.5878 19.1565C13.2373 18.9019 12.7627 18.9019 12.4122 19.1565L6.67312 23.3262C5.88941 23.8956 4.83493 23.1295 5.13428 22.2082L7.32642 15.4615C7.46029 15.0495 7.31363 14.5981 6.96315 14.3435L1.22405 10.1738C0.440337 9.60436 0.843112 8.36475 1.81184 8.36475H8.90575C9.33897 8.36475 9.72293 8.08578 9.8568 7.67376L12.0489 0.927052Z"
+                                                        fill="#808080" />
+                                                </svg>
+                                            @endif
+                                        @endfor
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

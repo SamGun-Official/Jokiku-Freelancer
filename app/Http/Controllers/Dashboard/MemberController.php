@@ -32,8 +32,12 @@ class MemberController extends Controller
                         ->where('order_status_id', 2)
                         ->distinct('freelancer_id')
                         ->count();
+        $reviews = Order::join('review','order.id','review.order_id')
+                ->where('freelancer_id',auth()->user()->id)
+                ->orderByDesc('rating')
+                ->get();
 
-        return view('pages.dashboard.index', compact('orders', 'progress', 'completed', 'freelancer'));
+        return view('pages.dashboard.index', compact('orders', 'progress', 'completed', 'freelancer','reviews'));
     }
 
     /**

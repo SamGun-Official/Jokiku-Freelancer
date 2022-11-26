@@ -30,7 +30,6 @@
                                 <th class="py-4" scope="">Freelancer Name</th>
                                 <th class="py-4" scope="">Service Details</th>
                                 <th class="py-4" scope="">Service Price</th>
-                                {{-- <th class="py-4" scope="">Service Deadline</th> --}}
                             </tr>
                         </thead>
                         <tbody class="bg-white">
@@ -78,14 +77,6 @@
                                 <td class="px-1 py-5 text-sm">
                                     {{ 'Rp '.number_format($order->service->price) ?? '' }}
                                 </td>
-                                {{-- <td class="px-1 py-5 text-xs text-red-500">
-                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline mb-1">
-                                        <path d="M7.0002 12.8332C10.2219 12.8332 12.8335 10.2215 12.8335 6.99984C12.8335 3.77818 10.2219 1.1665 7.0002 1.1665C3.77854 1.1665 1.16687 3.77818 1.16687 6.99984C1.16687 10.2215 3.77854 12.8332 7.0002 12.8332Z" stroke="#F26E6E" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M7 3.5V7L9.33333 8.16667" stroke="#F26E6E" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-
-                                    {{ (strtotime($order->expired) - strtotime(date('Y-m-d'))) / 86400 ?? '' }} days left
-                                </td> --}}
                             </tr>
                         </tbody>
                     </table>
@@ -118,13 +109,20 @@
                                     {{ $review->comment }}
                                 </div>
                             </div>
+                            <div class="col-span-6">
+                                {!! RecaptchaV3::field('input') !!}
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <p class="text-red-500 mb-3 text-sm">{{ $errors->first('g-recaptcha-response') }}</p>
+                                @endif
+                            </div>
+
+                            <div class="px-1 py-4 text-right">
+                                <a href="{{ route('member.request.index') }}" type="button" class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
+                                    Back
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-span-6">
-                            {!! RecaptchaV3::field('input') !!}
-                            @if ($errors->has('g-recaptcha-response'))
-                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('g-recaptcha-response') }}</p>
-                            @endif
-                        </div>
+
 
                     @else
                         <form action="{{ route('member.request.rating.submit',$order->id) }}" method="POST">
@@ -151,7 +149,10 @@
                                     </div>
                                 </div>
                                 <div class="px-1 py-4 text-right">
-                                    <button class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" onclick="return confirm('Are you sure want to approve this data?')">
+                                    <a href="{{ route('member.request.index') }}" type="button" class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300" onclick="return confirm('Are you sure want to back? , Any changes you make will not be saved.')">
+                                        Back
+                                    </a>
+                                    <button class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" onclick="return confirm('Are you sure want to submit this review?')">
                                         Submit
                                     </button>
                                 </div>
