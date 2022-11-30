@@ -34,23 +34,6 @@
                         src="{{ asset('/assets/hero-image.png') }}" alt="" />
                 </div>
             </div>
-            <div class="lg:mb-20 mb-10 flex sm:space-x-4 space-x-1">
-                <div class="flex-1 flex items-center justify-center py-3 px-6">
-                    <img src="{{ url('images/brand-logo/netflix.svg') }}" alt="">
-                </div>
-                <div class="flex-1 flex items-center justify-center py-3 px-6">
-                    <img src="{{ url('images/brand-logo/amazon.svg') }}" alt="">
-                </div>
-                <div class="flex-1 flex items-center justify-center py-3 px-6">
-                    <img src="{{ url('images/brand-logo/uber.svg') }}" alt="">
-                </div>
-                <div class="flex-1 flex items-center justify-center py-3 px-6">
-                    <img src="{{ url('images/brand-logo/grab.svg') }}" alt="">
-                </div>
-                <div class="flex-1 flex items-center justify-center py-3 px-6">
-                    <img src="{{ url('images/brand-logo/google.svg') }}" alt="">
-                </div>
-            </div>
         </div>
     </div>
 
@@ -79,7 +62,7 @@
             </div>
         </div>
 
-        <!-- call to action -->
+        {{-- <!-- call to action -->
         <div class="py-10 lg:py-24 flex lg:flex-row flex-col items-center cta-bg">
             <!-- Left Column -->
             <div class="w-full lg:w-1/2 text-center justify-center flex lg:mb-0 mb-12">
@@ -104,6 +87,6 @@
                     Learn More
                 </a>
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection

@@ -1,6 +1,6 @@
 <!-- footer -->
 <footer class="footer bg-serv-bg relative py-2">
-    <div class="mx-auto lg:px-16 md:px-20 px-8 py-8 ">
+    {{-- <div class="mx-auto lg:px-16 md:px-20 px-8 py-8 ">
         <div class="sm:flex sm:mt-16">
             <div class="mt-8 sm:mt-0 sm:w-full flex flex-col md:flex-row justify-between">
                 <div class="flex-1 mt-2 flex-col">
@@ -109,12 +109,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="mx-auto lg:px-16 md:px-20 px-8 py-8 ">
-        <div class="mt-16 border-t border-serv-border sm:flex justify-between w-100 ">
+        <div class="sm:flex justify-between w-100 ">
             <div class="flex items-left mt-8">
                 <h1 class="text-white text-3xl font-bold">
-                    SERV
+                    JOKIKU FREELANCER
                 </h1>
             </div>
             <div class="sm:flex items-center justify-center mt-8 lg:ml-24">
