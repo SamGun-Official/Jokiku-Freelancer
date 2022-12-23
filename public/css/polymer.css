@@ -14,3 +14,7 @@ body {
 .flex-grow {
     flex-grow: 1;
 }
+
+.bg-serv-services-darker-bg {
+    background-color: rgba(225, 225, 225, var(--tw-bg-opacity));
+}
