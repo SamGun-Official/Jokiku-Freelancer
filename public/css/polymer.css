@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+html,
+body {
+    height: 100%;
+    min-height: 100%;
+}
+
+.flex-column {
+    display: flex;
+    flex-flow: column;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}

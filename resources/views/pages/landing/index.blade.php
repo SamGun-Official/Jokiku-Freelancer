@@ -2,6 +2,10 @@
 
 @section('title', ' Home')
 
+@push('polymer')
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/polymer.css') }}">
+@endpush
+
 @section('content')
     <!-- top -->
     <div class="hero-bg">
@@ -38,7 +42,7 @@
     </div>
 
     <!-- content -->
-    <div class="content">
+    <div class="content flex-grow">
         <!-- services -->
         <div class="bg-serv-services-bg overflow-hidden">
             <div class="pt-16 pb-16 lg:pb-20 lg:pl-24 md:pl-16 sm:pl-8 pl-8 mx-auto">
