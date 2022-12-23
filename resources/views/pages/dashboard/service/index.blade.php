@@ -71,9 +71,19 @@
                                     <td class="px-1 py-5 text-sm">
                                         {{ 'Rp ' . number_format($service->price) ?? '' }}
                                     </td>
-                                    <td class="px-1 py-5 text-sm text-green-500 text-md">
-                                        {{ 'Active' }}
-                                    </td>
+                                    @if($service->status == 0)
+                                        <td class="px-1 py-5 text-sm text-orange-500 text-md">
+                                            {{ 'Pending Approval' }}
+                                        </td>
+                                    @elseif($service->status == 1)
+                                        <td class="px-1 py-5 text-sm text-green-500 text-md">
+                                            {{ 'Currently Active' }}
+                                        </td>
+                                    @else
+                                        <td class="px-1 py-5 text-sm text-red-500 text-md">
+                                            {{ 'Rejected by Admin' }}
+                                        </td>
+                                    @endif
                                     <td class="px-1 py-5 text-sm">
                                         <a href="{{ route('member.service.edit', $service['id']) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
                                             Edit Service
