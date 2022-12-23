@@ -22,7 +22,8 @@ class LandingController extends Controller
      */
     public function index()
     {
-        $services = Service::orderBy('created_at', 'desc')->get();
+        // $services = Service::orderBy('created_at', 'desc')->get();
+        $services = Service::where('status', '1')->orderBy('created_at', 'desc')->get();
 
         return view('pages.landing.index', compact('services'));
     }
@@ -94,31 +95,33 @@ class LandingController extends Controller
     }
 
     // custom
-
-    public function explore(){
+    public function explore()
+    {
         $services = Service::where('status', '1')->orderBy('created_at', 'desc')->get();
 
         return view('pages.landing.explore', compact('services'));
     }
 
-    public function detail($id){
+    public function detail($id)
+    {
         $service = Service::where('id', $id)->first();
 
         $thumbnail = ThumbnailService::where('service_id', $id)->get();
         $advantage_user = AdvantageUser::where('service_id', $id)->get();
         $advantage_service = AdvantageService::where('service_id', $id)->get();
         $tagline = Tagline::where('service_id', $id)->get();
-        $review = Order::join('review','review.order_id','order.id')->where('service_id',$id)->orderByDesc('rating')->get();
+        $review = Order::join('review', 'review.order_id', 'order.id')->where('service_id', $id)->orderByDesc('rating')->get();
 
-        return view('pages.landing.detail', compact('service', 'thumbnail', 'advantage_user', 'advantage_service', 'tagline','review'));
+        return view('pages.landing.detail', compact('service', 'thumbnail', 'advantage_user', 'advantage_service', 'tagline', 'review'));
     }
 
-    public function booking($id){
+    public function booking($id)
+    {
         $service = Service::where('id', $id)->first();
         $user_buyer = Auth::user()->id;
 
         // validation booking
-        if($service->users_id == $user_buyer){
+        if ($service->users_id == $user_buyer) {
             toast('Sorry, members cannot book their own service!', 'warning');
             return back();
         }
@@ -138,7 +141,8 @@ class LandingController extends Controller
         return redirect()->route('detail.booking.landing', $order->id);
     }
 
-    public function detail_booking($id){
+    public function detail_booking($id)
+    {
         $order = Order::where('id', $id)->first();
 
         return view('pages.landing.booking', compact('order'));
