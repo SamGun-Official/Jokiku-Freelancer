@@ -13,11 +13,10 @@ class AdvantageService extends Model
 
     public $table = "advantage_service";
 
-
     protected $dates = [
         'updated_at',
         'created_at',
-        'deleted_at'
+        'deleted_at',
     ];
 
     protected $fillable = [
@@ -25,11 +24,11 @@ class AdvantageService extends Model
         'advantage',
         'updated_at',
         'created_at',
-        'deleted_at'
+        'deleted_at',
     ];
 
     public function service()
     {
-        return $this->belongsTo(Service::class, 'service_id','id');
+        return $this->belongsTo(Service::class, 'service_id', 'id');
     }
 }

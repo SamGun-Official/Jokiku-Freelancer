@@ -13,11 +13,10 @@ class DetailUser extends Model
 
     public $table = "detail_user";
 
-
     protected $dates = [
         'updated_at',
         'created_at',
-        'deleted_at'
+        'deleted_at',
     ];
 
     protected $fillable = [
@@ -28,18 +27,16 @@ class DetailUser extends Model
         'biography',
         'updated_at',
         'created_at',
-        'deleted_at'
+        'deleted_at',
     ];
 
     public function users()
     {
-        return $this->belongsTo(User::class, 'users_id','id');
+        return $this->belongsTo(User::class, 'users_id', 'id');
     }
 
     public function experience_user()
     {
         return $this->hasMany(ExperienceUser::class, 'detail_user_id');
     }
-
 }
-

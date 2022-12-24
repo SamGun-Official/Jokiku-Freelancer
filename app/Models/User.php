@@ -11,6 +11,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
@@ -69,23 +70,21 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function detail_user()
     {
-        return $this->hasOne(DetailUser::class,'users_id');
+        return $this->hasOne(DetailUser::class, 'users_id');
     }
 
     public function service()
     {
-        return $this->hasMany(Service::class,'users_id');
+        return $this->hasMany(Service::class, 'users_id');
     }
 
     public function order_buyer()
     {
-        return $this->hasMany(Order::class,'buyer_id');
+        return $this->hasMany(Order::class, 'buyer_id');
     }
 
     public function order_freelancer()
     {
-        return $this->hasMany(Order::class,'freelancer_id');
+        return $this->hasMany(Order::class, 'freelancer_id');
     }
-
-
 }

@@ -11,14 +11,12 @@ class Review extends Model
     // use HasFactory;
     use SoftDeletes;
 
-
     public $table = "review";
-
 
     protected $dates = [
         'updated_at',
         'created_at',
-        'deleted_at'
+        'deleted_at',
     ];
 
     protected $fillable = [
@@ -30,12 +28,11 @@ class Review extends Model
 
     public function order()
     {
-        return $this->belongsTo(Order::class, 'order_id','id');
+        return $this->belongsTo(Order::class, 'order_id', 'id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'users_id','id');
+        return $this->belongsTo(User::class, 'users_id', 'id');
     }
-
 }

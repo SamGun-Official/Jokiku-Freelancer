@@ -13,11 +13,10 @@ class Tagline extends Model
 
     public $table = "tagline";
 
-
     protected $dates = [
         'updated_at',
         'created_at',
-        'deleted_at'
+        'deleted_at',
     ];
 
     protected $fillable = [
@@ -25,12 +24,11 @@ class Tagline extends Model
         'tagline',
         'updated_at',
         'created_at',
-        'deleted_at'
+        'deleted_at',
     ];
-
 
     public function service()
     {
-        return $this->belongsTo(Service::class, 'service_id','id');
+        return $this->belongsTo(Service::class, 'service_id', 'id');
     }
 }

@@ -13,11 +13,10 @@ class ThumbnailService extends Model
 
     public $table = "thumbnail_service";
 
-
     protected $dates = [
         'updated_at',
         'created_at',
-        'deleted_at'
+        'deleted_at',
     ];
 
     protected $fillable = [
@@ -25,12 +24,11 @@ class ThumbnailService extends Model
         'thumbnail',
         'updated_at',
         'created_at',
-        'deleted_at'
+        'deleted_at',
     ];
-
 
     public function service()
     {
-        return $this->belongsTo(Service::class, 'service_id','id');
+        return $this->belongsTo(Service::class, 'service_id', 'id');
     }
 }

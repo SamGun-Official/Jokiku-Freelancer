@@ -13,11 +13,10 @@ class ExperienceUser extends Model
 
     public $table = "experience_user";
 
-
     protected $dates = [
         'updated_at',
         'created_at',
-        'deleted_at'
+        'deleted_at',
     ];
 
     protected $fillable = [
@@ -25,11 +24,11 @@ class ExperienceUser extends Model
         'experience',
         'updated_at',
         'created_at',
-        'deleted_at'
+        'deleted_at',
     ];
 
     public function user()
     {
-        return $this->belongsTo(DetailUser::class, 'detail_user_id','id');
+        return $this->belongsTo(DetailUser::class, 'detail_user_id', 'id');
     }
 }
