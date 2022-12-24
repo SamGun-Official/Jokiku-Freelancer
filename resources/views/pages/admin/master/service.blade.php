@@ -67,7 +67,7 @@
                                         <a href="{{ route('admin.approve.service', $item['id']) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-green-500">
                                             Approve
                                         </a>
-                                        <a href="{{ route('admin.reject.service', $item['id']) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-red-500">
+                                        <a href="{{ route('admin.reject.service', $item['id']) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-red-500" style="margin-left: 10px">
                                             Reject
                                         </a>
                                     </td>
