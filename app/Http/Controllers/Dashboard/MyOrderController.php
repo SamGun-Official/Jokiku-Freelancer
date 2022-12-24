@@ -12,6 +12,7 @@ use App\Models\ThumbnailService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Dashboard\MyOrder\UpdateMyOrderRequest;
+use App\Models\Review;
 use Illuminate\Support\Facades\DB;
 
 class MyOrderController extends Controller
@@ -20,6 +21,7 @@ class MyOrderController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,8 +30,9 @@ class MyOrderController extends Controller
     public function index()
     {
         $orders = Order::where('freelancer_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        $reviews = Review::whereIn('order_id', $orders->pluck('id'))->get();
 
-        return view('pages.dashboard.order.index', compact('orders'));
+        return view('pages.dashboard.order.index', compact('orders', 'reviews'));
     }
 
     /**
@@ -94,9 +97,10 @@ class MyOrderController extends Controller
             DB::beginTransaction();
             $data = $request->all();
 
-            if (isset($data['file'])){
+            if (isset($data['file'])) {
                 $data['file'] = $request->file('file')->store(
-                    'assets/order/attachment', 'public'
+                    'assets/order/attachment',
+                    'public'
                 );
 
                 $order = Order::find($order->id);
@@ -113,7 +117,6 @@ class MyOrderController extends Controller
             toast('failed to update', 'error');
             return back();
         }
-
     }
 
     /**
@@ -128,8 +131,8 @@ class MyOrderController extends Controller
     }
 
     // custom
-
-    public function accepted($id){
+    public function accepted($id)
+    {
         try {
             DB::beginTransaction();
             $order = Order::find($id);
@@ -146,7 +149,8 @@ class MyOrderController extends Controller
         }
     }
 
-    public function rejected($id){
+    public function rejected($id)
+    {
         try {
             DB::beginTransaction();
             $order = Order::find($id);
@@ -161,6 +165,5 @@ class MyOrderController extends Controller
             toast('failed to reject', 'error');
             return back();
         }
-
     }
 }
