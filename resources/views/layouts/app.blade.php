@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html x-data="data()" lang="en">
-    <head>
 
-        @include('includes.dashboard.meta')
+<head>
+    @include('includes.dashboard.meta')
 
-        <title>@yield('title') | SERV</title>
+    <title>@yield('title') | Jokiku Freelancer</title>
 
-        @stack('before-style')
+    @stack('before-style')
 
-        @include('includes.dashboard.style')
+    @include('includes.dashboard.style')
 
-        @stack('after-style')
-        {!! RecaptchaV3::initJs() !!}
-    </head>
-    <body class="antialiased">
-        <div class="flex h-screen bg-serv-services-bg" :class="{ 'overflow-hidden': isSideMenuOpen }">
+    @stack('after-style')
 
-            @include('component.dashboard.dekstop')
+    {!! RecaptchaV3::initJs() !!}
 
-            <div x-show="isSideMenuOpen" x-transition:enter="transition ease-in-out duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 flex items-end bg-black bg-opacity-50 z-1 sm:items-center sm:justify-center"></div>
+    @stack('polymer')
+</head>
 
-            @include('component.dashboard.mobile')
+<body class="antialiased">
+    <div class="flex h-screen bg-serv-services-bg" :class="{ 'overflow-hidden': isSideMenuOpen }">
+        @include('component.dashboard.dekstop')
 
-            <div class="flex flex-col flex-1 w-full">
-                @include('component.dashboard.header')
+        <div x-show="isSideMenuOpen" x-transition:enter="transition ease-in-out duration-150"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in-out duration-150" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="fixed inset-0 flex items-end bg-black bg-opacity-50 z-1 sm:items-center sm:justify-center"></div>
 
-                @include('sweetalert::alert')
+        @include('component.dashboard.mobile')
 
-                @yield('content')
-            </div>
+        <div class="flex flex-col flex-1 w-full">
+            @include('component.dashboard.header')
+            @include('sweetalert::alert')
 
+            @yield('content')
         </div>
+    </div>
 
-        @stack('before-script')
+    @stack('before-script')
 
-        @include('includes.dashboard.script')
+    @include('includes.dashboard.script')
 
-        @stack('after-script')
-    </body>
+    @stack('after-script')
+</body>
+
 </html>

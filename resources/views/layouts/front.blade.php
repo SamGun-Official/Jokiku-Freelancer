@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        @include('includes.landing.meta')
 
-        <title>@yield('title') | Jokiku Freelancer</title>
+<head>
+    @include('includes.landing.meta')
 
-        @stack('before-style')
+    <title>@yield('title') | Jokiku Freelancer</title>
 
-        @include('includes.landing.style')
+    @stack('before-style')
 
-        @stack('after-style')
+    @include('includes.landing.style')
 
-        {!! RecaptchaV3::initJs() !!}
+    @stack('after-style')
 
-        @stack('polymer')
-    </head>
-    <body class="antialiased flex-column">
-        <div class="relative flex-column flex-grow">
-            @include('includes.landing.header')
-            @include('sweetalert::alert')
+    {!! RecaptchaV3::initJs() !!}
 
-            @yield('content')
+    @stack('polymer')
+</head>
 
-            @include('includes.landing.footer')
+<body class="antialiased flex-column">
+    <div class="relative flex-column flex-grow">
+        @include('includes.landing.header')
+        @include('sweetalert::alert')
 
-            @stack('before-script')
+        @yield('content')
 
-            @include('includes.landing.script')
+        @include('includes.landing.footer')
 
-            @stack('after-script')
+        @stack('before-script')
 
-            {{-- modals --}}
-            @include('component.modal.login')
-            @include('component.modal.register')
-            @include('component.modal.register-success')
-        </div>
-    </body>
+        @include('includes.landing.script')
+
+        @stack('after-script')
+
+        {{-- modals --}}
+        @include('component.modal.login')
+        @include('component.modal.register')
+        @include('component.modal.register-success')
+    </div>
+</body>
+
 </html>
