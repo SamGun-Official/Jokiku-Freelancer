@@ -97,7 +97,11 @@ class LandingController extends Controller
     // custom
     public function explore()
     {
-        $services = Service::where('status', '1')->orderBy('created_at', 'desc')->get();
+        // User cannot see their own services.
+        $services = Service::where([
+            ['status', '1'],
+            ['users_id', '<>', auth()->user()->id],
+        ])->orderBy('created_at', 'desc')->get();
 
         return view('pages.landing.explore', compact('services'));
     }
