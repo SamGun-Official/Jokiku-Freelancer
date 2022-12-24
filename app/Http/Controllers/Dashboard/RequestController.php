@@ -16,6 +16,7 @@ class RequestController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,8 +25,9 @@ class RequestController extends Controller
     public function index()
     {
         $orders = Order::where('buyer_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        $reviews = Order::where('buyer_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
 
-        return view('pages.dashboard.request.index', compact('orders'));
+        return view('pages.dashboard.request.index', compact('orders', 'reviews'));
     }
 
     /**
@@ -97,14 +99,14 @@ class RequestController extends Controller
     }
 
     // custom
-
-    public function  approve($id){
+    public function approve($id)
+    {
         try {
             DB::beginTransaction();
             $order = Order::where('id', $id)->first();
 
             // update order
-            $order= Order::find($order['id']);
+            $order = Order::find($order['id']);
             $order->order_status_id = 1;
             $order->save();
 
@@ -112,20 +114,18 @@ class RequestController extends Controller
             DB::commit();
             return redirect()->route('member.request.index');
         } catch (\Throwable $th) {
-            DB::rollBack();
-
             toast('failed to approve', 'error');
+            DB::rollBack();
             return back();
         }
-
     }
-
 
     public function rating($id)
     {
-        $order = Order::where('id',$id)->first();
-        $review = Review::where('order_id',$id)->where('users_id',Auth::user()->id)->first();
-        return view('pages.dashboard.request.rating', compact('order','review'));
+        $order = Order::where('id', $id)->first();
+        $review = Review::where('order_id', $id)->where('users_id', Auth::user()->id)->first();
+
+        return view('pages.dashboard.request.rating', compact('order', 'review'));
     }
 
     public function rating_submit(Request $request, $id)
