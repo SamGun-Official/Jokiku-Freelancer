@@ -42,10 +42,10 @@
                                     <?php $counter = 0; ?>
                                     @forelse ($orders as $key => $order)
                                         <tr class="text-gray-700 @if ($counter < count($orders) - 1) border-b @endif">
-                                            <td class="w-16 pr-3.5 py-5 text-sm">
+                                            <td class="w-16 pr-7 py-5 text-sm">
                                                 {{ ++$counter }}
                                             </td>
-                                            <td class="w-1/4 pr-3.5 py-5 text-sm">
+                                            <td class="w-1/4 pr-7 py-5 text-sm">
                                                 <div class="flex items-center text-sm">
                                                     <div class="relative w-10 h-10 mr-3 rounded-full md:block">
                                                         @if ($order->user_buyer->detail_user->photo != null)
@@ -71,7 +71,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="w-1/3 pr-3.5 py-5">
+                                            <td class="w-1/4 pr-7 py-5">
                                                 <div class="flex items-center text-sm">
                                                     <div class="relative w-10 h-10 mr-3 rounded-full md:block">
                                                         @if ($order->service->thumbnail_service[0]->thumbnail != null)
@@ -89,33 +89,37 @@
                                                             aria-hidden="true"></div>
                                                     </div>
                                                     <div>
-                                                        <p class="font-medium text-black">
-                                                            {{ $order->service->title ?? '' }}
-                                                            <?php
-                                                            $given_rating = 0;
-                                                            $rating_exist = false;
-                                                            ?>
-                                                            @foreach ($reviews as $review)
-                                                                @if ($review->order->id == $order->id)
-                                                                    <?php
-                                                                    $given_rating = $review->rating;
-                                                                    $rating_exist = true;
-                                                                    ?>
-                                                                @endif
-                                                            @endforeach
-                                                            <svg class="inline align-sub ml-3" width="20" height="19"
-                                                                viewBox="0 0 20 19" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M9.04894 0.927052C9.3483 0.00574112 10.6517 0.00573993 10.9511 0.927051L12.4697 5.60081C12.6035 6.01284 12.9875 6.2918 13.4207 6.2918H18.335C19.3037 6.2918 19.7065 7.53141 18.9228 8.10081L14.947 10.9894C14.5966 11.244 14.4499 11.6954 14.5838 12.1074L16.1024 16.7812C16.4017 17.7025 15.3472 18.4686 14.5635 17.8992L10.5878 15.0106C10.2373 14.756 9.7627 14.756 9.41221 15.0106L5.43648 17.8992C4.65276 18.4686 3.59828 17.7025 3.89763 16.7812L5.41623 12.1074C5.55011 11.6954 5.40345 11.244 5.05296 10.9894L1.07722 8.10081C0.293507 7.53141 0.696283 6.2918 1.66501 6.2918H6.57929C7.01252 6.2918 7.39647 6.01284 7.53035 5.60081L9.04894 0.927052Z"
-                                                                    @if ($rating_exist) fill="#FFBF47" @else fill="#CCC" @endif />
-                                                            </svg>
+                                                        <p class="font-medium text-black flex-vcenter">
+                                                            <span class="text-nowrap" style="max-width: 20rem;">
+                                                                {{ $order->service->title ?? '' }}
+                                                                <?php
+                                                                $given_rating = 0;
+                                                                $rating_exist = false;
+                                                                ?>
+                                                                @foreach ($reviews as $review)
+                                                                    @if ($review->order->id == $order->id)
+                                                                        <?php
+                                                                        $given_rating = $review->rating;
+                                                                        $rating_exist = true;
+                                                                        ?>
+                                                                    @endif
+                                                                @endforeach
+                                                            </span>
+                                                            <span>
+                                                                <svg class="inline align-sub ml-3" width="20" height="19"
+                                                                    viewBox="0 0 20 19" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M9.04894 0.927052C9.3483 0.00574112 10.6517 0.00573993 10.9511 0.927051L12.4697 5.60081C12.6035 6.01284 12.9875 6.2918 13.4207 6.2918H18.335C19.3037 6.2918 19.7065 7.53141 18.9228 8.10081L14.947 10.9894C14.5966 11.244 14.4499 11.6954 14.5838 12.1074L16.1024 16.7812C16.4017 17.7025 15.3472 18.4686 14.5635 17.8992L10.5878 15.0106C10.2373 14.756 9.7627 14.756 9.41221 15.0106L5.43648 17.8992C4.65276 18.4686 3.59828 17.7025 3.89763 16.7812L5.41623 12.1074C5.55011 11.6954 5.40345 11.244 5.05296 10.9894L1.07722 8.10081C0.293507 7.53141 0.696283 6.2918 1.66501 6.2918H6.57929C7.01252 6.2918 7.39647 6.01284 7.53035 5.60081L9.04894 0.927052Z"
+                                                                        @if ($rating_exist) fill="#FFBF47" @else fill="#CCC" @endif />
+                                                                </svg>
+                                                            </span>
                                                             {{ $given_rating ?? '0' }}
                                                         </p>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="w-40 pr-3.5 py-5 text-sm text-red-500">
+                                            <td class="w-40 pr-7 py-5 text-sm text-red-500">
                                                 @if ($order->order_status_id == 1)
                                                     <span class="text-black">Done</span>
                                                 @else
@@ -135,7 +139,7 @@
                                                     </div>
                                                 @endif
                                             </td>
-                                            <td class="w-40 pr-3.5 py-5 text-sm">
+                                            <td class="w-40 pr-7 py-5 text-sm">
                                                 <p
                                                     class="inline text-left
                                                     @if ($order->order_status_id == '1') {{ 'text-green-500' }}
@@ -148,24 +152,24 @@
                                                     {{ $order->order_status->name }}
                                                 </p>
                                             </td>
-                                            <td class="pr-3.5 py-5 text-sm">
+                                            <td class="pr-7 py-5 text-sm">
                                                 @if ($order->order_status_id == '1' || $order->order_status_id == '2' || $order->order_status_id == '3')
                                                     <a href="{{ route('member.order.show', $order->id) }}"
-                                                        class="px-4 py-2 mt-1 mr-2 text-center text-white rounded-xl bg-serv-email">Details</a>
+                                                        class="px-4 py-2 mr-2 text-center text-white rounded-xl bg-serv-email width-84 inline-block">Details</a>
                                                     @if ($order->order_status_id == '2')
                                                         <a href="{{ route('member.order.edit', $order->id) }}"
-                                                            class="px-4 py-2 mt-2 text-center text-white rounded-xl bg-serv-button">Submit</a>
+                                                            class="px-4 py-2 text-center text-white rounded-xl bg-serv-button width-84 inline-block">Submit</a>
                                                     @else
                                                         <span
-                                                            class="px-4 py-2 mt-2 text-center text-white rounded-xl bg-serv-email no-selection bg-grey-out">Submit</span>
+                                                            class="px-4 py-2 text-center text-white rounded-xl bg-serv-email no-selection bg-grey-out width-84 inline-block">Submit</span>
                                                     @endif
                                                 @elseif ($order->order_status_id == '4')
                                                     <a href="{{ route('member.accept.order', $order->id) }}"
-                                                        class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
+                                                        class="px-4 py-2 mr-2 text-left text-white text-center rounded-xl bg-serv-button width-84 inline-block">
                                                         Accept
                                                     </a>
                                                     <a href="{{ route('member.reject.order', $order->id) }}"
-                                                        class="px-4 py-2 mt-2 text-left bg-white rounded-xl">
+                                                        class="px-4 py-2 text-left text-white text-center rounded-xl bg-serv-button bg-red-500 width-84 inline-block">
                                                         Reject
                                                     </a>
                                                 @else

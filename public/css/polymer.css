@@ -6,6 +6,15 @@ body {
     min-height: 100%;
 }
 
+.flex {
+    display: flex;
+}
+
+.flex-vcenter {
+    display: flex;
+    align-items: center;
+}
+
 .flex-column {
     display: flex;
     flex-flow: column;
@@ -17,4 +26,31 @@ body {
 
 .bg-serv-services-darker-bg {
     background-color: rgba(225, 225, 225, var(--tw-bg-opacity));
+}
+
+.title-url:hover {
+    text-decoration: underline;
+}
+
+.no-selection {
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.bg-grey-out {
+    background-color: rgba(215, 215, 215, 1)!important;
+    color: #000!important;
+}
+
+.width-84 {
+    width: 84px;
+}
+
+.text-nowrap {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
 }
