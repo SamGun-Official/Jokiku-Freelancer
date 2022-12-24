@@ -156,7 +156,7 @@
                                                 @if ($order->order_status_id == '1' || $order->order_status_id == '2' || $order->order_status_id == '3')
                                                     <a href="{{ route('member.order.show', $order->id) }}"
                                                         class="px-4 py-2 mr-2 text-center text-white rounded-xl bg-serv-email width-84 inline-block">Details</a>
-                                                    @if ($order->order_status_id == '2')
+                                                    @if ($order->order_status_id == '2' || $order->order_status_id == '3')
                                                         <a href="{{ route('member.order.edit', $order->id) }}"
                                                             class="px-4 py-2 text-center text-white rounded-xl bg-serv-button width-84 inline-block">Submit</a>
                                                     @else
