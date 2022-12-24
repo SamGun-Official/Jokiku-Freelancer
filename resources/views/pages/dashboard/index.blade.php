@@ -184,7 +184,7 @@
                     </div>
                 </main>
                 <aside class="p-4 lg:col-span-5 md:col-span-12 md:pt-0">
-                    <div
+                    {{-- <div
                         class="relative w-full h-56 m-auto text-white transition-transform transform bg-red-100 rounded-xl">
                         <img class="relative object-cover w-full h-full rounded-xl"
                             src="{{ asset('/assets/images/card-background.png') }}" alt="">
@@ -228,7 +228,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="p-6 mt-8 bg-white rounded-xl">
                         <div>
                             <h2 class="mb-1 text-xl font-semibold">
