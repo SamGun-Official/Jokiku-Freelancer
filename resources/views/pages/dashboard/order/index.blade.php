@@ -122,24 +122,39 @@
                                                 </div>
                                             </td>
                                             <td class="w-40 pr-7 py-5 text-sm text-red-500">
+                                                <?php
+                                                $remaining_day = (strtotime($order->expired) - strtotime(date('Y-m-d'))) / 86400;
+                                                ?>
                                                 @if ($order->order_status_id == 1)
                                                     <span class="text-black">Done</span>
                                                 @elseif ($order->order_status_id == 3)
                                                     <span class="text-black">-</span>
                                                 @else
                                                     <div class="flex flex-vcenter">
-                                                        <svg width="14" height="14" viewBox="0 0 14 14"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg"
-                                                            class="inline mr-1.5">
-                                                            <path
-                                                                d="M7.0002 12.8332C10.2219 12.8332 12.8335 10.2215 12.8335 6.99984C12.8335 3.77818 10.2219 1.1665 7.0002 1.1665C3.77854 1.1665 1.16687 3.77818 1.16687 6.99984C1.16687 10.2215 3.77854 12.8332 7.0002 12.8332Z"
-                                                                stroke="#F26E6E" stroke-linecap="round"
-                                                                stroke-linejoin="round" />
-                                                            <path d="M7 3.5V7L9.33333 8.16667" stroke="#F26E6E"
-                                                                stroke-linecap="round" stroke-linejoin="round" />
-                                                        </svg>
-                                                        {{ (strtotime($order->expired) - strtotime(date('Y-m-d'))) / 86400 ?? '' }}
-                                                        days left
+                                                        @if ($remaining_day >= 0)
+                                                            <svg width="14" height="14" viewBox="0 0 14 14"
+                                                                fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                                class="inline mr-1.5">
+                                                                <path
+                                                                    d="M7.0002 12.8332C10.2219 12.8332 12.8335 10.2215 12.8335 6.99984C12.8335 3.77818 10.2219 1.1665 7.0002 1.1665C3.77854 1.1665 1.16687 3.77818 1.16687 6.99984C1.16687 10.2215 3.77854 12.8332 7.0002 12.8332Z"
+                                                                    stroke="#F26E6E" stroke-linecap="round"
+                                                                    stroke-linejoin="round" />
+                                                                <path d="M7 3.5V7L9.33333 8.16667" stroke="#F26E6E"
+                                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                            </svg>
+                                                        @endif
+                                                        @if ($remaining_day > 0)
+                                                            {{ $remaining_day ?? '' }}
+                                                            @if ($remaining_day > 1)
+                                                                days left
+                                                            @else
+                                                                day left
+                                                            @endif
+                                                        @elseif ($remaining_day == 0)
+                                                            Today
+                                                        @else
+                                                            Late
+                                                        @endif
                                                     </div>
                                                 @endif
                                             </td>
@@ -149,34 +164,48 @@
                                                     @if ($order->order_status_id == '1') {{ 'text-green-500' }}
                                                     @elseif ($order->order_status_id == '2')
                                                         {{ 'text-yellow-500' }}
-                                                    @elseif ($order->order_status_id == '3')
+                                                    @elseif ($order->order_status_id == '3' || ($remaining_day < 0 && $order->order_status_id == '4'))
                                                         {{ 'text-red-500' }}
                                                     @else
                                                         {{ 'text-orange-500' }} @endif">
-                                                    {{ $order->order_status->name }}
+                                                    @if ($remaining_day < 0 && $order->order_status_id == '2')
+                                                        @if ($order->file == null)
+                                                            Not Submitted
+                                                        @else
+                                                            Submitted
+                                                        @endif
+                                                    @elseif ($remaining_day < 0 && $order->order_status_id == '4')
+                                                        Rejected
+                                                    @else
+                                                        {{ $order->order_status->name }}
+                                                    @endif
                                                 </p>
                                             </td>
                                             <td class="pr-7 py-5 text-sm">
                                                 @if ($order->order_status_id == '1' || $order->order_status_id == '2' || $order->order_status_id == '3')
-                                                    <a href="{{ route('member.order.show', $order->id) }}"
-                                                        class="px-4 py-2 mr-2 text-center text-white rounded-xl bg-serv-email width-84 inline-block">Details</a>
+                                                    {{-- <a href="{{ route('member.order.show', $order->id) }}"
+                                                        class="px-4 py-2 mr-2 text-center text-white rounded-xl bg-serv-email width-84 inline-block">Details</a> --}}
                                                     @if ($order->order_status_id == '2')
                                                         <a href="{{ route('member.order.edit', $order->id) }}"
-                                                            class="px-4 py-2 text-center text-white rounded-xl bg-serv-email width-84 inline-block">Submit</a>
-                                                    @elseif ($order->order_status_id != '3')
+                                                            class="px-4 py-2 text-center text-white rounded-xl bg-serv-email width-84 inline-block">Details</a>
+                                                    @else
                                                         <span
-                                                            class="px-4 py-2 text-center text-white rounded-xl bg-serv-email no-selection bg-grey-out width-84 inline-block">Submit</span>
+                                                            class="px-4 py-2 text-center text-white rounded-xl bg-serv-email no-selection bg-grey-out width-84 inline-block">Details</span>
                                                     @endif
-                                                @elseif ($order->order_status_id == '4')
-                                                    <a href="{{ route('member.accept.order', $order->id) }}"
-                                                        class="px-4 py-2 mr-2 text-left text-white text-center rounded-xl bg-serv-button width-84 inline-block">
-                                                        Accept
-                                                    </a>
-                                                    <a href="{{ route('member.reject.order', $order->id) }}"
-                                                        class="px-4 py-2 text-left text-white text-center rounded-xl bg-serv-button bg-red-500 width-84 inline-block">
-                                                        Reject
-                                                    </a>
                                                 @else
+                                                    @if ($remaining_day < 0)
+                                                        <span
+                                                            class="px-4 py-2 text-center text-white rounded-xl bg-serv-email no-selection bg-grey-out width-84 inline-block">Details</span>
+                                                    @else
+                                                        <a href="{{ route('member.accept.order', $order->id) }}"
+                                                            class="px-4 py-2 mr-2 text-left text-white text-center rounded-xl bg-serv-button width-84 inline-block">
+                                                            Accept
+                                                        </a>
+                                                        <a href="{{ route('member.reject.order', $order->id) }}"
+                                                            class="px-4 py-2 text-left text-white text-center rounded-xl bg-serv-button bg-red-500 width-84 inline-block">
+                                                            Reject
+                                                        </a>
+                                                    @endif
                                                     {{-- {{ 'N/A' }} --}}
                                                 @endif
                                             </td>
