@@ -25,17 +25,17 @@
             </div>
             <section class="container mx-auto mt-5">
                 <div class="grid gap-5 md:grid-cols-12">
-                    <main class="mb-8 col-span-12 px-10 pb-4 md:pt-0">
+                    <main class="mb-8 col-span-12 px-10 md:pt-0">
                         <div class="px-6 py-2 mt-2 bg-white rounded-xl">
                             <table class="w-full" aria-label="Table">
                                 <thead>
                                     <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
-                                        <th class="py-4" scope="">#</th>
-                                        <th class="py-4" scope="">Order Buyer Name</th>
-                                        <th class="py-4" scope="">Service in Order</th>
-                                        <th class="py-4" scope="">Time Left (Days)</th>
-                                        <th class="py-4" scope="">Order Status</th>
-                                        <th class="py-4" scope="">Available Actions</th>
+                                        <th class="px-0 py-4" scope="">#</th>
+                                        <th class="px-0 py-4" scope="">Order Buyer Name</th>
+                                        <th class="px-0 py-4" scope="">Service in Order</th>
+                                        <th class="px-0 py-4" scope="">Time Left (Days)</th>
+                                        <th class="px-0 py-4" scope="">Order Status</th>
+                                        <th class="px-0 py-4" scope="">Available Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white">
@@ -188,7 +188,7 @@
                                             </td>
                                             <td class="pr-7 py-5 text-sm">
                                                 @if ($order->order_status_id == '1' || $order->order_status_id == '2' || $order->order_status_id == '3')
-                                                    @if ($order->order_status_id == '2')
+                                                    @if ($order->order_status_id != '3')
                                                         <a href="{{ route('member.order.edit', $order->id) }}"
                                                             class="px-4 py-2 text-center text-white rounded-xl bg-serv-email width-84 inline-block">Details</a>
                                                     @else
