@@ -40,7 +40,7 @@ class UpdateMyOrderRequest extends FormRequest
                 'required', 'mimes:zip', 'max:8192',
             ],
             'note' => [
-                'required', 'string', 'max:10000',
+                'nullable', 'string', 'max:10000',
             ],
             'expired' => [
                 'nullable', 'date',

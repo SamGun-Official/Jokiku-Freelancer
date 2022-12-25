@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Dashboard\MyOrder\UpdateMyOrderRequest;
 use App\Models\Review;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class MyOrderController extends Controller
@@ -75,7 +76,15 @@ class MyOrderController extends Controller
      */
     public function edit(Order $order)
     {
-        return view('pages.dashboard.order.edit', compact('order'));
+        $review = Review::where('order_id', $order['id'])->first();
+
+        if ($review != null) {
+            $buyer = User::where('id', $review['users_id'])->first();
+        } else {
+            $buyer = null;
+        }
+
+        return view('pages.dashboard.order.edit', compact('order', 'review', 'buyer'));
     }
 
     /**

@@ -34,9 +34,13 @@ body {
 
 .no-selection {
     cursor: default;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
+    -webkit-user-select: none !important;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -moz-user-select: none !important;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none !important;
 }
 
 .bg-grey-out {
@@ -53,4 +57,12 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: break-word;
+}
+
+.bg-serv-button-override {
+    background-color: rgba(34, 176, 125, 1) !important;
+}
+
+.bg-serv-email-override {
+    background-color: rgba(11, 45, 61, 1) !important;
 }
