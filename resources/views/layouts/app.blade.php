@@ -39,9 +39,8 @@
 
     @stack('before-script')
 
-    @include('includes.dashboard.script')
-
-    @stack('after-script')
-</body>
-
+        @include('includes.dashboard.script')
+        
+        @stack('after-script')
+    </body>
 </html>
