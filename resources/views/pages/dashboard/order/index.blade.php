@@ -91,7 +91,7 @@
                                                     <div>
                                                         <p class="font-medium text-black flex-vcenter">
                                                             <span class="text-nowrap" style="max-width: 20rem;">
-                                                                <a href="{{ route('member.service.edit', ['service' => $order->service->id]) }}"
+                                                                <a href="{{ route('member.service.show', ['service' => $order->service->id]) }}"
                                                                     class="font-medium text-black title-url">
                                                                     {{ $order->service->title ?? '' }}
                                                                 </a>
@@ -126,6 +126,8 @@
                                             </td>
                                             <td class="w-40 pr-7 py-5 text-sm text-red-500">
                                                 <?php
+                                                date_default_timezone_set('Asia/Jakarta');
+
                                                 $remaining_day = (strtotime($order->expired) - strtotime(date('Y-m-d'))) / 86400;
                                                 ?>
                                                 @if ($order->order_status_id == 1)
@@ -186,8 +188,6 @@
                                             </td>
                                             <td class="pr-7 py-5 text-sm">
                                                 @if ($order->order_status_id == '1' || $order->order_status_id == '2' || $order->order_status_id == '3')
-                                                    {{-- <a href="{{ route('member.order.show', $order->id) }}"
-                                                        class="px-4 py-2 mr-2 text-center text-white rounded-xl bg-serv-email width-84 inline-block">Details</a> --}}
                                                     @if ($order->order_status_id == '2')
                                                         <a href="{{ route('member.order.edit', $order->id) }}"
                                                             class="px-4 py-2 text-center text-white rounded-xl bg-serv-email width-84 inline-block">Details</a>

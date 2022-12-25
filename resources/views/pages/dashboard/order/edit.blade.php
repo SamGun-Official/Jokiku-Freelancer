@@ -81,7 +81,7 @@
                                             <div>
                                                 <p class="font-medium text-black flex-vcenter">
                                                     <span class="text-nowrap" style="max-width: 20rem;">
-                                                        <a href="{{ route('member.service.edit', ['service' => $order->service->id]) }}"
+                                                        <a href="{{ route('member.service.show', ['service' => $order->service->id]) }}"
                                                             class="font-medium text-black title-url">
                                                             {{ $order->service->title ?? '' }}
                                                         </a>
@@ -95,6 +95,8 @@
                                     </td>
                                     <td class="w-1/4 pr-7 py-5 text-sm text-red-500">
                                         <?php
+                                        date_default_timezone_set('Asia/Jakarta');
+
                                         $remaining_day = (strtotime($order->expired) - strtotime(date('Y-m-d'))) / 86400;
                                         ?>
                                         @if ($order->order_status_id == 1)

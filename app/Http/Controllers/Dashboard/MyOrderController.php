@@ -64,17 +64,7 @@ class MyOrderController extends Controller
      */
     public function show(Order $order)
     {
-        $service = Service::where('id', $order['service_id'])->first();
-        $thumbnail = ThumbnailService::where('service_id', $order['service_id'])->get();
-        $advantage_service = AdvantageService::where('service_id', $order['service_id'])->get();
-        $advantage_user = AdvantageUser::where('service_id', $order['service_id'])->get();
-        $tagline = Tagline::where('service_id', $order['service_id'])->get();
-        $reviews = Review::whereIn('order_id', Order::where([
-            ['freelancer_id', auth()->user()->id],
-            ['service_id', $order['service_id']],
-        ])->pluck('id'))->get();
-
-        return view('pages.dashboard.order.detail', compact('order', 'thumbnail', 'advantage_service', 'advantage_user', 'tagline', 'service', 'reviews'));
+        return abort(404);
     }
 
     /**
@@ -112,13 +102,13 @@ class MyOrderController extends Controller
                 $order->note = $data['note'];
                 $order->save();
 
-                toast('Submit order has been success', 'success');
+                toast('Submit order has been success!', 'success');
                 DB::commit();
                 return redirect()->route('member.order.index');
             }
         } catch (\Throwable $th) {
+            toast('Failed to update!', 'error');
             DB::rollBack();
-            toast('failed to update', 'error');
             return back();
         }
     }
@@ -143,12 +133,12 @@ class MyOrderController extends Controller
             $order->order_status_id = 2;
             $order->save();
 
-            toast('Accept order has been success', 'success');
+            toast('Accept order has been success!', 'success');
             DB::commit();
             return back();
         } catch (\Throwable $th) {
+            toast('Failed to accept!', 'error');
             DB::rollBack();
-            toast('failed to accept', 'error');
             return back();
         }
     }
@@ -161,12 +151,12 @@ class MyOrderController extends Controller
             $order->order_status_id = 3;
             $order->save();
 
-            toast('Reject order has been success', 'success');
+            toast('Reject order has been success!', 'success');
             DB::commit();
             return back();
         } catch (\Throwable $th) {
+            toast('Failed to reject!', 'error');
             DB::rollBack();
-            toast('failed to reject', 'error');
             return back();
         }
     }
