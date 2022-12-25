@@ -25,7 +25,7 @@
             </div>
             <section class="container mx-auto mt-5">
                 <div class="grid gap-5 md:grid-cols-12">
-                    <main class="col-span-12 px-10 pb-4 md:pt-0">
+                    <main class="mb-8 col-span-12 px-10 pb-4 md:pt-0">
                         <div class="px-6 py-2 mt-2 bg-white rounded-xl">
                             <table class="w-full" aria-label="Table">
                                 <thead>
