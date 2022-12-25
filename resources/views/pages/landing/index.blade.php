@@ -48,7 +48,7 @@
                 <!-- Right Column -->
                 <div class="w-full lg:w-1/2 text-center lg:justify-start justify-center flex pr-0">
                     <img class="bottom-0 lg:block lg:right-24 md:right-16 sm:right-8 right-8 w-75"
-                        src="{{ asset('/assets/hero-image.png') }}" alt="" />
+                        src="{{ asset('/assets/gambar.png') }}" alt="" />
                 </div>
             </div>
         </div>
