@@ -91,7 +91,10 @@
                                                     <div>
                                                         <p class="font-medium text-black flex-vcenter">
                                                             <span class="text-nowrap" style="max-width: 20rem;">
-                                                                {{ $order->service->title ?? '' }}
+                                                                <a href="{{ route('member.service.edit', ['service' => $order->service->id]) }}"
+                                                                    class="font-medium text-black title-url">
+                                                                    {{ $order->service->title ?? '' }}
+                                                                </a>
                                                                 <?php
                                                                 $given_rating = 0;
                                                                 $rating_exist = false;
