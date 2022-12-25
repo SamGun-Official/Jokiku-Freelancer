@@ -24,13 +24,26 @@
                         skills and experience to help you accomplishing <br class="lg:block hidden">
                         your projects.
                     </p>
-                    <div
-                        class="md:flex contents items-center mx-auto lg:mx-0 lg:flex justify-center lg:space-x-8 md:space-x-2 space-x-0">
-                        <button class="bg-serv-button text-white text-lg font-semibold py-4 px-12 my-2 rounded-lg"
-                            onclick="toggleModal('registerModal')">
-                            Get Started
-                        </button>
-                    </div>
+                    @if (auth()->check())
+
+                        <div
+
+                            class="md:flex contents items-center mx-auto lg:mx-0 lg:flex justify-center lg:space-x-8 md:space-x-2 space-x-0">
+                            <a class="bg-serv-button text-white text-lg font-semibold py-4 px-12 my-2 rounded-lg" href=" {{ route('explore.landing') }}">
+                                Get Started
+                            </a>
+                        </div>
+                    @else
+
+                        <div
+
+                            class="md:flex contents items-center mx-auto lg:mx-0 lg:flex justify-center lg:space-x-8 md:space-x-2 space-x-0">
+                            <button class="bg-serv-button text-white text-lg font-semibold py-4 px-12 my-2 rounded-lg"
+                                onclick="toggleModal('registerModal')">
+                                Get Started
+                            </button>
+                        </div>
+                    @endif
                 </div>
                 <!-- Right Column -->
                 <div class="w-full lg:w-1/2 text-center lg:justify-start justify-center flex pr-0">
