@@ -15,8 +15,7 @@
                 <!-- Left Column -->
                 <div
                     class="lg:flex-grow lg:w-1/2 flex flex-col lg:items-start lg:text-left mb-3 md:mb-12 lg:mb-0 items-center text-center">
-                    <h1
-                        class="text-black-1 lg:leading-normal sm:text-4xl lg:text-5xl text-3xl mb-5 font-semibold lg:mt-20">
+                    <h1 class="text-black-1 lg:leading-normal sm:text-4xl lg:text-5xl text-3xl mb-5 font-semibold lg:mt-20">
                         Finish Your Project With <br class="lg:block hidden">
                         Ours Best Freelancers
                     </h1>
@@ -27,7 +26,8 @@
                     </p>
                     <div
                         class="md:flex contents items-center mx-auto lg:mx-0 lg:flex justify-center lg:space-x-8 md:space-x-2 space-x-0">
-                        <button class="bg-serv-button text-white text-lg font-semibold py-4 px-12 my-2 rounded-lg" onclick="toggleModal('registerModal')">
+                        <button class="bg-serv-button text-white text-lg font-semibold py-4 px-12 my-2 rounded-lg"
+                            onclick="toggleModal('registerModal')">
                             Get Started
                         </button>
                     </div>
