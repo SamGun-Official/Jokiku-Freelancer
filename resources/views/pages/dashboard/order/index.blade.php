@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', ' My Order')
+@section('title', ' My Orders')
 
 @push('polymer')
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/polymer.css') }}">
@@ -162,7 +162,7 @@
                                                         class="px-4 py-2 mr-2 text-center text-white rounded-xl bg-serv-email width-84 inline-block">Details</a>
                                                     @if ($order->order_status_id == '2')
                                                         <a href="{{ route('member.order.edit', $order->id) }}"
-                                                            class="px-4 py-2 text-center text-white rounded-xl bg-serv-button width-84 inline-block">Submit</a>
+                                                            class="px-4 py-2 text-center text-white rounded-xl bg-serv-email width-84 inline-block">Submit</a>
                                                     @elseif ($order->order_status_id != '3')
                                                         <span
                                                             class="px-4 py-2 text-center text-white rounded-xl bg-serv-email no-selection bg-grey-out width-84 inline-block">Submit</span>

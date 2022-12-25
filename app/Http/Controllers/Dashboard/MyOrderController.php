@@ -69,8 +69,12 @@ class MyOrderController extends Controller
         $advantage_service = AdvantageService::where('service_id', $order['service_id'])->get();
         $advantage_user = AdvantageUser::where('service_id', $order['service_id'])->get();
         $tagline = Tagline::where('service_id', $order['service_id'])->get();
+        $reviews = Review::whereIn('order_id', Order::where([
+            ['freelancer_id', auth()->user()->id],
+            ['service_id', $order['service_id']],
+        ])->pluck('id'))->get();
 
-        return view('pages.dashboard.order.detail', compact('order', 'thumbnail', 'advantage_service', 'advantage_user', 'tagline', 'service'));
+        return view('pages.dashboard.order.detail', compact('order', 'thumbnail', 'advantage_service', 'advantage_user', 'tagline', 'service', 'reviews'));
     }
 
     /**
