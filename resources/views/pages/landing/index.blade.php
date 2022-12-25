@@ -50,32 +50,34 @@
             </div>
         </div>
     </div>
-
     <!-- content -->
     <div class="content flex-grow">
         <!-- services -->
         <div class="bg-serv-services-bg overflow-hidden">
-            <div class="pt-16 pb-16 lg:pb-20 lg:pl-24 md:pl-16 sm:pl-8 pl-8 mx-auto">
+            <div class="py-16 lg:px-24 md:px-16 sm:px-8 px-8 mx-auto">
                 <div class="flex flex-col w-full">
                     <h2 class="sm:text-2xl text-xl tracking-wider font-semibold mb-5 text-medium-black">
                         Featured Services</h2>
                 </div>
-                <div class="flex overflow-x-scroll pb-10 hide-scroll-bar dragscroll -mx-3">
-                    <div class="flex flex-nowrap">
-
+                {{-- <div class="flex overflow-x-scroll hide-scroll-bar dragscroll -mx-3"> --}}
+                <div class="flex">
+                    <div class="flex flex-nowrap w-full justify-between">
+                        <?php
+                        $max_cap = 4;
+                        $counter = 0;
+                        ?>
                         @forelse ($services as $item)
-                            @include('component.landing.service')
-
+                            @if ($counter < $max_cap)
+                                @include('component.landing.service')
+                            @endif
+                            <?php $counter++; ?>
                         @empty
                             {{-- empty --}}
                         @endforelse
-
                     </div>
-
                 </div>
             </div>
         </div>
-
         {{-- <!-- call to action -->
         <div class="py-10 lg:py-24 flex lg:flex-row flex-col items-center cta-bg">
             <!-- Left Column -->

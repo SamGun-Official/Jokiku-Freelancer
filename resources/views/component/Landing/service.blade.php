@@ -1,4 +1,4 @@
-<a href="{{ route('detail.landing', $item->id) }}" class="inline-block px-3">
+<a href="{{ route('detail.landing', $item->id) }}" class="inline-block">
     <div class="w-96 h-auto overflow-hidden md:p-5 p-4 bg-white rounded-2xl inline-block">
         <div class="flex items-center space-x-2 mb-6">
             @if ($item->user->detail_user->photo != null)
