@@ -137,7 +137,7 @@
             </div>
             <div class="flex items-right flex-end mt-8">
                 <p class="text-serv-text">
-                    &copy; 2021 Serv All rights reserved.
+                    &copy; 2021 Jokiku All rights reserved.
                 </p>
             </div>
         </div>
