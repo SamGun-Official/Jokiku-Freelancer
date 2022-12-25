@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\BanController;
+use App\Http\Controllers\Admin\ProfileAController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProfileAdminController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use Illuminate\Support\Facades\Route;
@@ -67,9 +69,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth:sanc
     Route::get('reject/service/{id}', [AdminServiceController::class, 'reject'])->name('reject.service');
 
     Route::get('downloadReport', [ReportController::class, 'downloadReport'])->name('downloadReport');
-
+    // edit profile
+    
+    Route::get('delete_photo', [ProfileAdminController::class, 'delete'])->name('delete.photo.profile');
+    Route::resource('profile', ProfileAdminController::class);
 });
-
 
 Route::get('/email/verify', function () {
     if (auth()->user()->email_verified_at != null){
