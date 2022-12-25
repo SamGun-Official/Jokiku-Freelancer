@@ -179,6 +179,7 @@
                         request()->is('member/profile/*') ||
                         request()->is('member/*/profile') ||
                         request()->is('member/*/profile/*'))
+                        
                         <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
                             aria-hidden="true"></span>
                     @endif
@@ -304,10 +305,37 @@
 
                     </a>
                 </li>
+                <li class="relative px-6 py-3">
+                            @if (request()->is('admin/user') ||
+                    request()->is('admin/user/*') ||
+                    request()->is('admin/*/user') ||
+                    request()->is('admin/*/user/*'))
+                    <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
+                        aria-hidden="true"></span>
+                    @endif
+                    <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
+                    href="{{ route('member.profile.index') }}">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <rect width="24" height="24" fill="white" />
+                        <circle cx="10.5" cy="5.5" r="2.75" stroke="#082431"
+                            stroke-width="1.5" />
+                        <path
+                            d="M3.75 18.2581C3.75 14.6638 6.66376 11.75 10.2581 11.75H11.7419C15.3362 11.75 18.25 14.6638 18.25 18.2581C18.25 18.8059 17.8059 19.25 17.2581 19.25H4.74194C4.1941 19.25 3.75 18.8059 3.75 18.2581Z"
+                            stroke="#082431" stroke-width="1.5" />
+                        <path
+                            d="M17.75 14.299C18.1642 13.5816 19.0816 13.3358 19.799 13.75C20.5165 14.1642 20.7623 15.0816 20.3481 15.799L19.5981 17.0981L17.9314 19.9848C17.715 20.3596 17.383 20.6541 16.985 20.8241L15.4217 21.4919C15.3603 21.518 15.2911 21.478 15.2831 21.4119L15.0797 19.7241C15.028 19.2944 15.117 18.8596 15.3333 18.4848L17 15.5981L17.75 14.299Z"
+                            fill="white" />
+                        <path
+                            d="M17 15.5981L15.3333 18.4848C15.117 18.8596 15.028 19.2944 15.0797 19.7241L15.2831 21.4119C15.2911 21.478 15.3603 21.518 15.4217 21.4919L16.985 20.8241C17.383 20.6541 17.715 20.3596 17.9314 19.9848L19.5981 17.0981M17 15.5981L17.75 14.299C18.1642 13.5816 19.0816 13.3358 19.799 13.75V13.75C20.5165 14.1642 20.7623 15.0816 20.3481 15.799L19.5981 17.0981M17 15.5981L19.5981 17.0981"
+                            stroke="#082431" stroke-width="1.5" />
+                        </svg>
+                        <span class="ml-4">Edit Profile</span>
+                    </a>
+                </li>
+
             @endif
-
-
-
+            
             <li class="relative px-6 py-3">
                 <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
                     href="{{ route('logout') }}"
@@ -331,6 +359,8 @@
                     </form>
                 </a>
             </li>
+
+            
         </ul>
     </div>
 </aside>
