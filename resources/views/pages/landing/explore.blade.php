@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 @else
-                    <nav class="my-8 text-center" aria-label="navigation">
+                    {{-- <nav class="my-8 text-center" aria-label="navigation">
                         <a class="bg-serv-bg text-white block sm:inline-block my-2 py-2 px-8 mx-4 font-medium rounded-xl"
                             href="#">
                             All Services
@@ -76,7 +76,7 @@
                             href="#">
                             Business
                         </a>
-                    </nav>
+                    </nav> --}}
                     <div class="grid grid-cols lg:grid-cols-3 md:grid-cols-2 gap-4">
                         @forelse ($services as $item)
                             @include('component.Landing.service-explorer')
