@@ -106,15 +106,17 @@
                                                                 @endforeach
                                                             </span>
                                                             <span>
-                                                                <svg class="inline align-sub ml-3" width="20" height="19"
-                                                                    viewBox="0 0 20 19" fill="none"
+                                                                <svg class="inline align-sub ml-3" width="20"
+                                                                    height="19" viewBox="0 0 20 19" fill="none"
                                                                     xmlns="http://www.w3.org/2000/svg">
                                                                     <path
                                                                         d="M9.04894 0.927052C9.3483 0.00574112 10.6517 0.00573993 10.9511 0.927051L12.4697 5.60081C12.6035 6.01284 12.9875 6.2918 13.4207 6.2918H18.335C19.3037 6.2918 19.7065 7.53141 18.9228 8.10081L14.947 10.9894C14.5966 11.244 14.4499 11.6954 14.5838 12.1074L16.1024 16.7812C16.4017 17.7025 15.3472 18.4686 14.5635 17.8992L10.5878 15.0106C10.2373 14.756 9.7627 14.756 9.41221 15.0106L5.43648 17.8992C4.65276 18.4686 3.59828 17.7025 3.89763 16.7812L5.41623 12.1074C5.55011 11.6954 5.40345 11.244 5.05296 10.9894L1.07722 8.10081C0.293507 7.53141 0.696283 6.2918 1.66501 6.2918H6.57929C7.01252 6.2918 7.39647 6.01284 7.53035 5.60081L9.04894 0.927052Z"
                                                                         @if ($rating_exist) fill="#FFBF47" @else fill="#CCC" @endif />
                                                                 </svg>
                                                             </span>
-                                                            {{ $given_rating ?? '0' }}
+                                                            <span class="ml-1">
+                                                                {{ $given_rating ?? '0' }}
+                                                            </span>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -122,6 +124,8 @@
                                             <td class="w-40 pr-7 py-5 text-sm text-red-500">
                                                 @if ($order->order_status_id == 1)
                                                     <span class="text-black">Done</span>
+                                                @elseif ($order->order_status_id == 3)
+                                                    <span class="text-black">-</span>
                                                 @else
                                                     <div class="flex flex-vcenter">
                                                         <svg width="14" height="14" viewBox="0 0 14 14"
@@ -156,10 +160,10 @@
                                                 @if ($order->order_status_id == '1' || $order->order_status_id == '2' || $order->order_status_id == '3')
                                                     <a href="{{ route('member.order.show', $order->id) }}"
                                                         class="px-4 py-2 mr-2 text-center text-white rounded-xl bg-serv-email width-84 inline-block">Details</a>
-                                                    @if ($order->order_status_id == '2' || $order->order_status_id == '3')
+                                                    @if ($order->order_status_id == '2')
                                                         <a href="{{ route('member.order.edit', $order->id) }}"
                                                             class="px-4 py-2 text-center text-white rounded-xl bg-serv-button width-84 inline-block">Submit</a>
-                                                    @else
+                                                    @elseif ($order->order_status_id != '3')
                                                         <span
                                                             class="px-4 py-2 text-center text-white rounded-xl bg-serv-email no-selection bg-grey-out width-84 inline-block">Submit</span>
                                                     @endif
