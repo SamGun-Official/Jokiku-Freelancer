@@ -25,18 +25,15 @@
                         your projects.
                     </p>
                     @if (auth()->check())
-
                         <div
-
                             class="md:flex contents items-center mx-auto lg:mx-0 lg:flex justify-center lg:space-x-8 md:space-x-2 space-x-0">
-                            <a class="bg-serv-button text-white text-lg font-semibold py-4 px-12 my-2 rounded-lg" href=" {{ route('explore.landing') }}">
+                            <a class="bg-serv-button text-white text-lg font-semibold py-4 px-12 my-2 rounded-lg"
+                                href=" {{ route('explore.landing') }}">
                                 Get Started
                             </a>
                         </div>
                     @else
-
                         <div
-
                             class="md:flex contents items-center mx-auto lg:mx-0 lg:flex justify-center lg:space-x-8 md:space-x-2 space-x-0">
                             <button class="bg-serv-button text-white text-lg font-semibold py-4 px-12 my-2 rounded-lg"
                                 onclick="toggleModal('registerModal')">
