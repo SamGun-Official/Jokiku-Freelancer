@@ -282,9 +282,9 @@
                                         onclick="return confirm('Are you sure you want to go back? Any changes you make will not be saved.')">
                                         Back
                                     </a>
-                                    <button type="submit"
-                                        class="px-4 py-2 text-left text-white text-center rounded-xl bg-serv-button-override width-84 inline-block text-sm"
-                                        onclick="return confirm('Are you sure you want to submit this data?')">
+                                    <button type="submit" id="submitBtn"
+                                        class="px-4 py-2 text-left text-white text-center rounded-xl width-84 inline-block text-sm bg-grey-out"
+                                        onclick="return confirm('Are you sure you want to submit this data?')" disabled>
                                         Submit
                                     </button>
                                 @else
@@ -311,6 +311,9 @@
     <script>
         function fileChosen() {
             document.getElementById("filename").innerHTML = document.getElementById("choose").files.item(0).name;
+            document.getElementById("submitBtn").disabled = false;
+            document.getElementById("submitBtn").classList.remove("bg-grey-out");
+            document.getElementById("submitBtn").classList.add("bg-serv-button-override");
         }
     </script>
 @endpush
