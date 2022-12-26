@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
             $table->enum('role', ['user', 'admin'])->default('user');
             $table->boolean('ban_status')->default(0);
+            $table->bigInteger('account_balance')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

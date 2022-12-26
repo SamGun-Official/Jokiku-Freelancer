@@ -23,7 +23,7 @@ return new class extends Migration
             // $table->integer('service_id')->nullable();
             $table->longText('file')->nullable();
             $table->longText('note')->nullable();
-            $table->integer('status_bayar')->nullable()->default(0);;
+            $table->integer('status_bayar')->default(0);
             $table->foreignId('order_status_id')->nullable()->index('fk_order_to_order_status');
             // $table->integer('order_status_id')->nullable();
             $table->softDeletes();
