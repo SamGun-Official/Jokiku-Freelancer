@@ -118,7 +118,7 @@
                             <rect x="11" y="7" width="2" height="10" rx="1" fill="white" />
                             <rect x="17" y="11" width="2" height="10" rx="1" transform="rotate(90 17 11)" fill="white" />
                         </svg> -->
-                        <span class="ml-4">My Request</span>
+                        <span class="ml-4">My Requests</span>
                         <span
                             class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">
                             {{ auth()->user()->order_buyer()->count() }}
@@ -214,7 +214,7 @@
                                 d="M17 15.5981L15.3333 18.4848C15.117 18.8596 15.028 19.2944 15.0797 19.7241L15.2831 21.4119C15.2911 21.478 15.3603 21.518 15.4217 21.4919L16.985 20.8241C17.383 20.6541 17.715 20.3596 17.9314 19.9848L19.5981 17.0981M17 15.5981L17.75 14.299C18.1642 13.5816 19.0816 13.3358 19.799 13.75V13.75C20.5165 14.1642 20.7623 15.0816 20.3481 15.799L19.5981 17.0981M17 15.5981L19.5981 17.0981"
                                 stroke="#082431" stroke-width="1.5" />
                         </svg>
-                        <span class="ml-4">Master User</span>
+                        <span class="ml-4">Master Users</span>
                     </a>
                 </li>
                 <li class="relative px-6 py-3">
@@ -245,7 +245,7 @@
                             <line x1="7.75" y1="11.25" x2="16.25" y2="11.25" stroke="white" stroke-width="1.5" stroke-linecap="round" />
                             <line x1="7.75" y1="15.25" x2="16.25" y2="15.25" stroke="white" stroke-width="1.5" stroke-linecap="round" />
                         </svg> -->
-                        <span class="ml-4">Master Laporan</span>
+                        <span class="ml-4">Master Reports</span>
                     </a>
                 </li>
                 <li class="relative px-6 py-3">
@@ -276,7 +276,7 @@
                             <rect x="14" y="3" width="7" height="7" rx="2" fill="#082431" />
                             <rect x="14" y="14" width="7" height="7" rx="2" fill="#082431" />
                         </svg> -->
-                        <span class="ml-4">Master Service</span>
+                        <span class="ml-4">Master Services</span>
                     </a>
                 </li>
                 <li class="relative px-6 py-3">
