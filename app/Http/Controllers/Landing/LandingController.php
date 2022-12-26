@@ -23,7 +23,11 @@ class LandingController extends Controller
     public function index()
     {
         // $services = Service::orderBy('created_at', 'desc')->get();
-        $services = Service::where('status', '1')->orderBy('created_at', 'desc')->get();
+        // $services = Service::where('status', '1')->orderBy('created_at', 'desc')->get();
+        $services = Service::where([
+            ['status', '1'],
+            ['users_id', '<>', auth()->user()->id],
+        ])->orderBy('created_at', 'desc')->get();
 
         return view('pages.landing.index', compact('services'));
     }
@@ -109,12 +113,20 @@ class LandingController extends Controller
     public function detail($id)
     {
         $service = Service::where('id', $id)->first();
-
         $thumbnail = ThumbnailService::where('service_id', $id)->get();
         $advantage_user = AdvantageUser::where('service_id', $id)->get();
         $advantage_service = AdvantageService::where('service_id', $id)->get();
         $tagline = Tagline::where('service_id', $id)->get();
         $review = Order::join('review', 'review.order_id', 'order.id')->where('service_id', $id)->orderByDesc('rating')->get();
+
+        // $thumbnail = ThumbnailService::where('service_id', $service['id'])->get();
+        // $advantage_service = AdvantageService::where('service_id', $service['id'])->get();
+        // $advantage_user = AdvantageUser::where('service_id', $service['id'])->get();
+        // $tagline = Tagline::where('service_id', $service['id'])->get();
+        // $reviews = Review::whereIn('order_id', Order::where([
+        //     ['freelancer_id', auth()->user()->id],
+        //     ['service_id', $id],
+        // ])->pluck('id'))->get();
 
         return view('pages.landing.detail', compact('service', 'thumbnail', 'advantage_user', 'advantage_service', 'tagline', 'review'));
     }
