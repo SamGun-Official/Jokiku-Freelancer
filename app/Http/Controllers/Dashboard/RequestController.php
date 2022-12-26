@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Review;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -108,13 +109,22 @@ class RequestController extends Controller
             // update order
             $order = Order::find($order['id']);
             $order->order_status_id = 1;
+            $order->status_bayar = 1;
+            $service_id = $order->service_id;
+            $service = Service::where('id', $service_id)->select(['users_id', 'price'])->first();
+            $user_id = $service['users_id'];
+            $price = $service['price'];
             $order->save();
 
-            toast('Approve has been success', 'success');
+            $user = User::find($user_id);
+            $user->account_balance += $price;
+            $user->save();
+
+            toast('Payment has been confirmed!', 'success');
             DB::commit();
             return redirect()->route('member.request.index');
         } catch (\Throwable $th) {
-            toast('failed to approve', 'error');
+            toast('Failed to pay!', 'error');
             DB::rollBack();
             return back();
         }
