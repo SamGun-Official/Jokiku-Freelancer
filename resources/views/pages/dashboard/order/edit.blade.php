@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', ' Submit Order')
+@section('title', ' Order Details')
 
 @push('polymer')
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/polymer.css') }}">
@@ -189,7 +189,7 @@
                                         <div class="grid grid-cols-6 gap-6 flex-grow">
                                             <div class="col-span-6 flex-column">
                                                 <label for="note"
-                                                    class="block mb-3 font-medium text-gray-700 text-md">Note
+                                                    class="block mb-3 font-medium text-gray-700 text-md">Note For Buyer
                                                     (Optional)</label>
                                                 <textarea placeholder="Enter your submission notes for the buyer here..." type="text" name="note"
                                                     id="note" autocomplete="note"

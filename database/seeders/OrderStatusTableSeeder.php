@@ -17,7 +17,7 @@ class OrderStatusTableSeeder extends Seeder
     {
         $order_status = [
             [
-                'name'              => "Approved",
+                'name'              => "Paid",
                 'created_at'        => date('Y-m-d h:i:s'),
                 'updated_at'        => date('Y-m-d h:i:s'),
             ],
