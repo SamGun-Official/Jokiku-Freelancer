@@ -16,9 +16,9 @@
             </div>
             <div class="col-span-4 lg:text-right">
                 <div class="relative mt-0 md:mt-6">
-                    <a href="{{ route('member.service.create') }}" class="inline-block px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
+                    {{-- <a href="{{ route('member.service.create') }}" class="inline-block px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
                         Filter
-                    </a>
+                    </a> --}}
                     <a href="{{ route('admin.downloadReport') }}" class="inline-block px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
                         Download Report
                     </a>

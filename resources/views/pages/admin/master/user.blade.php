@@ -62,9 +62,9 @@
                                     </td>
                                     <td class="px-1 py-5 text-sm">
                                         @if ($item->ban_status == 1)
-                                            banned
+                                            Banned
                                         @else
-                                            not banned
+                                            Not Banned
                                         @endif
                                     </td>
                                     <td class="px-1 py-5 text-sm">
@@ -78,7 +78,7 @@
                                     </td>
                                 </tr>
                             @empty
-                            
+
                             @endforelse
                         </tbody>
                     </table>
