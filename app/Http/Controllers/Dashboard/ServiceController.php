@@ -32,8 +32,10 @@ class ServiceController extends Controller
     public function index()
     {
         $services = Service::where('users_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        $orders = Order::whereIn('service_id', $services->pluck("id"))->get();
+        $reviews = Review::whereIn('order_id', $orders->pluck('id'))->get();
 
-        return view('pages.dashboard.service.index', compact('services'));
+        return view('pages.dashboard.service.index', compact('services', 'reviews'));
     }
 
     /**
