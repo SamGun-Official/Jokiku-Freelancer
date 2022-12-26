@@ -13,6 +13,7 @@ class MemberController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,24 +21,13 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $orders = Order::where('freelancer_id', Auth::user()->id)->get();
+        $orders = Order::where('freelancer_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        $progress = Order::where('freelancer_id', Auth::user()->id)->where('order_status_id', 2)->count();
+        $completed = Order::where('freelancer_id', Auth::user()->id)->where('order_status_id', 1)->count();
+        $freelancer = Order::where('buyer_id', Auth::user()->id)->where('order_status_id', 2)->distinct('freelancer_id')->count();
+        $reviews = Order::join('review', 'order.id', 'review.order_id')->where('freelancer_id', auth()->user()->id)->orderByDesc('rating')->get();
 
-        $progress = Order::where('freelancer_id', Auth::user()->id)
-                        ->where('order_status_id', 2)
-                        ->count();
-        $completed = Order::where('freelancer_id', Auth::user()->id)
-                        ->where('order_status_id', 1)
-                        ->count();
-        $freelancer = Order::where('buyer_id', Auth::user()->id)
-                        ->where('order_status_id', 2)
-                        ->distinct('freelancer_id')
-                        ->count();
-        $reviews = Order::join('review','order.id','review.order_id')
-                ->where('freelancer_id',auth()->user()->id)
-                ->orderByDesc('rating')
-                ->get();
-
-        return view('pages.dashboard.index', compact('orders', 'progress', 'completed', 'freelancer','reviews'));
+        return view('pages.dashboard.index', compact('orders', 'progress', 'completed', 'freelancer', 'reviews'));
     }
 
     /**

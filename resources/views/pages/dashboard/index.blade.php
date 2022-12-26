@@ -94,9 +94,9 @@
                             <table class="w-full mt-4" aria-label="Table">
                                 <thead>
                                     <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
-                                        <th class="py-4" scope="">Buyer Name</th>
-                                        <th class="py-4" scope="">Service Name</th>
-                                        <th class="py-4" scope="">Deadline</th>
+                                        <th class="py-4" scope="">Order Buyer Name</th>
+                                        <th class="py-4" scope="">Service in Order</th>
+                                        <th class="py-4" scope="">Due Date</th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white">
@@ -132,7 +132,7 @@
                                                             <p class="text-sm text-red-500">
                                                                 {{ $item->order_status->name ?? '' }}</p>
                                                         @else
-                                                            <p class="text-sm text-black">
+                                                            <p class="text-sm text-orange-500">
                                                                 {{ $item->order_status->name ?? '' }}</p>
                                                         @endif
                                                     </div>
@@ -142,7 +142,7 @@
                                                 <div class="flex items-center text-sm">
                                                     <div class="relative w-10 h-10 mr-3 rounded-full md:block">
                                                         {{-- validation photo --}}
-                                                        @if ($item->service->thumbnail_service[0]->thumbnail != null)
+                                                        @if (count($item->service->thumbnail_service) > 0)
                                                             <img class="object-cover w-full h-full rounded"
                                                                 src="{{ url(Storage::url($item->service->thumbnail_service[0]->thumbnail)) }}"
                                                                 alt="" loading="lazy" />
@@ -184,7 +184,7 @@
                     </div>
                 </main>
                 <aside class="p-4 lg:col-span-5 md:col-span-12 md:pt-0">
-                    {{-- <div
+                    <div
                         class="relative w-full h-56 m-auto text-white transition-transform transform bg-red-100 rounded-xl">
                         <img class="relative object-cover w-full h-full rounded-xl"
                             src="{{ asset('/assets/images/card-background.png') }}" alt="">
@@ -195,7 +195,7 @@
                                         Your Balance
                                         </h1>
                                     <p class="font-medium tracking-widest">
-                                        Rp 21.000.000
+                                        {{ 'Rp ' . number_format(auth()->user()->account_balance) ?? '' }}
                                     </p>
                                 </div>
                                 <img class="w-16 h-12" src="{{ asset('/assets/images/visa-icon.svg') }}"
@@ -228,7 +228,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="p-6 mt-8 bg-white rounded-xl">
                         <div>
                             <h2 class="mb-1 text-xl font-semibold">
@@ -242,13 +242,17 @@
                             <div class="mt-4">No review has been made so far about your work.</div>
                         @else
                             <table class="w-full" aria-label="Table">
-                                <thead>
+                                <thead class="">
                                     <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
-                                        <th class="py-4" scope=""></th>
-                                        <th class="py-4" scope=""></th>
+                                        <th class="py-2" scope=""></th>
+                                        <th class="py-2" scope=""></th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white">
+                                    <tr>
+                                        <td class="py-1"></td>
+                                        <td class="py-1"></td>
+                                    </tr>
                                     @foreach ($reviews as $key => $item)
                                         <tr class="text-gray-700">
                                             <td class="w-1/2 px-1 py-2">

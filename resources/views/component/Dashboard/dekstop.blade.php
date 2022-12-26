@@ -28,7 +28,6 @@
                 </p>
             </div>
         </div>
-
         <ul class="mt-6">
             <li class="relative px-6 py-3">
                 @if (request()->is('member/dashboard') ||
@@ -60,7 +59,6 @@
         <ul>
             @if (request()->is('member/*'))
                 <li class="relative px-6 py-3">
-
                     @if (request()->is('member/service') ||
                         request()->is('member/service/*') ||
                         request()->is('member/*/service') ||
@@ -68,7 +66,6 @@
                         <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
                             aria-hidden="true"></span>
                     @endif
-
                     <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
                         href="{{ route('member.service.index') }}">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -94,12 +91,9 @@
                             class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">
                             {{ auth()->user()->service()->count() }}
                         </span>
-
                     </a>
                 </li>
-
                 <li class="relative px-6 py-3">
-
                     @if (request()->is('member/request') ||
                         request()->is('member/request/*') ||
                         request()->is('member/*/request') ||
@@ -107,7 +101,6 @@
                         <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
                             aria-hidden="true"></span>
                     @endif
-
                     <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
                         href="{{ route('member.request.index') }}">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -130,12 +123,9 @@
                             class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">
                             {{ auth()->user()->order_buyer()->count() }}
                         </span>
-
                     </a>
                 </li>
-
                 <li class="relative px-6 py-3">
-
                     @if (request()->is('member/order') ||
                         request()->is('member/order/*') ||
                         request()->is('member/*/order') ||
@@ -143,7 +133,6 @@
                         <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
                             aria-hidden="true"></span>
                     @endif
-
                     <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
                         href="{{ route('member.order.index') }}">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -169,21 +158,16 @@
                             class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">
                             {{ auth()->user()->order_freelancer()->count() }}
                         </span>
-
                     </a>
                 </li>
-
                 <li class="relative px-6 py-3">
-
                     @if (request()->is('member/profile') ||
                         request()->is('member/profile/*') ||
                         request()->is('member/*/profile') ||
                         request()->is('member/*/profile/*'))
-                        
                         <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
                             aria-hidden="true"></span>
                     @endif
-
                     <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
                         href="{{ route('member.profile.index') }}">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -206,7 +190,6 @@
                 </li>
             @else
                 <li class="relative px-6 py-3">
-
                     @if (request()->is('admin/user') ||
                         request()->is('admin/user/*') ||
                         request()->is('admin/*/user') ||
@@ -214,7 +197,6 @@
                         <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
                             aria-hidden="true"></span>
                     @endif
-
                     <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
                         href="{{ route('admin.user.index') }}">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -235,9 +217,7 @@
                         <span class="ml-4">Master User</span>
                     </a>
                 </li>
-
                 <li class="relative px-6 py-3">
-
                     @if (request()->is('admin/report') ||
                         request()->is('admin/report/*') ||
                         request()->is('admin/*/report') ||
@@ -245,7 +225,6 @@
                         <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
                             aria-hidden="true"></span>
                     @endif
-
                     <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
                         href="{{ route('admin.report.index') }}">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -267,12 +246,9 @@
                             <line x1="7.75" y1="15.25" x2="16.25" y2="15.25" stroke="white" stroke-width="1.5" stroke-linecap="round" />
                         </svg> -->
                         <span class="ml-4">Master Laporan</span>
-
                     </a>
                 </li>
-
                 <li class="relative px-6 py-3">
-
                     @if (request()->is('admin/service') ||
                         request()->is('admin/service/*') ||
                         request()->is('admin/*/service') ||
@@ -280,7 +256,6 @@
                         <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
                             aria-hidden="true"></span>
                     @endif
-
                     <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
                         href="{{ route('admin.service.index') }}">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -302,45 +277,41 @@
                             <rect x="14" y="14" width="7" height="7" rx="2" fill="#082431" />
                         </svg> -->
                         <span class="ml-4">Master Service</span>
-
                     </a>
                 </li>
                 <li class="relative px-6 py-3">
-                            @if (request()->is('admin/user') ||
-                                request()->is('admin/user/*') ||
-                                request()->is('admin/*/user') ||
-                                request()->is('admin/*/user/*'))
-                    <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
-                        aria-hidden="true"></span>
+                    @if (request()->is('admin/user') ||
+                        request()->is('admin/user/*') ||
+                        request()->is('admin/*/user') ||
+                        request()->is('admin/*/user/*'))
+                        <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
+                            aria-hidden="true"></span>
                     @endif
                     <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
-                    href="{{ route('admin.profile.index') }}">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <rect width="24" height="24" fill="white" />
-                        <circle cx="10.5" cy="5.5" r="2.75" stroke="#082431"
-                            stroke-width="1.5" />
-                        <path
-                            d="M3.75 18.2581C3.75 14.6638 6.66376 11.75 10.2581 11.75H11.7419C15.3362 11.75 18.25 14.6638 18.25 18.2581C18.25 18.8059 17.8059 19.25 17.2581 19.25H4.74194C4.1941 19.25 3.75 18.8059 3.75 18.2581Z"
-                            stroke="#082431" stroke-width="1.5" />
-                        <path
-                            d="M17.75 14.299C18.1642 13.5816 19.0816 13.3358 19.799 13.75C20.5165 14.1642 20.7623 15.0816 20.3481 15.799L19.5981 17.0981L17.9314 19.9848C17.715 20.3596 17.383 20.6541 16.985 20.8241L15.4217 21.4919C15.3603 21.518 15.2911 21.478 15.2831 21.4119L15.0797 19.7241C15.028 19.2944 15.117 18.8596 15.3333 18.4848L17 15.5981L17.75 14.299Z"
-                            fill="white" />
-                        <path
-                            d="M17 15.5981L15.3333 18.4848C15.117 18.8596 15.028 19.2944 15.0797 19.7241L15.2831 21.4119C15.2911 21.478 15.3603 21.518 15.4217 21.4919L16.985 20.8241C17.383 20.6541 17.715 20.3596 17.9314 19.9848L19.5981 17.0981M17 15.5981L17.75 14.299C18.1642 13.5816 19.0816 13.3358 19.799 13.75V13.75C20.5165 14.1642 20.7623 15.0816 20.3481 15.799L19.5981 17.0981M17 15.5981L19.5981 17.0981"
-                            stroke="#082431" stroke-width="1.5" />
+                        href="{{ route('admin.profile.index') }}">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect width="24" height="24" fill="white" />
+                            <circle cx="10.5" cy="5.5" r="2.75" stroke="#082431"
+                                stroke-width="1.5" />
+                            <path
+                                d="M3.75 18.2581C3.75 14.6638 6.66376 11.75 10.2581 11.75H11.7419C15.3362 11.75 18.25 14.6638 18.25 18.2581C18.25 18.8059 17.8059 19.25 17.2581 19.25H4.74194C4.1941 19.25 3.75 18.8059 3.75 18.2581Z"
+                                stroke="#082431" stroke-width="1.5" />
+                            <path
+                                d="M17.75 14.299C18.1642 13.5816 19.0816 13.3358 19.799 13.75C20.5165 14.1642 20.7623 15.0816 20.3481 15.799L19.5981 17.0981L17.9314 19.9848C17.715 20.3596 17.383 20.6541 16.985 20.8241L15.4217 21.4919C15.3603 21.518 15.2911 21.478 15.2831 21.4119L15.0797 19.7241C15.028 19.2944 15.117 18.8596 15.3333 18.4848L17 15.5981L17.75 14.299Z"
+                                fill="white" />
+                            <path
+                                d="M17 15.5981L15.3333 18.4848C15.117 18.8596 15.028 19.2944 15.0797 19.7241L15.2831 21.4119C15.2911 21.478 15.3603 21.518 15.4217 21.4919L16.985 20.8241C17.383 20.6541 17.715 20.3596 17.9314 19.9848L19.5981 17.0981M17 15.5981L17.75 14.299C18.1642 13.5816 19.0816 13.3358 19.799 13.75V13.75C20.5165 14.1642 20.7623 15.0816 20.3481 15.799L19.5981 17.0981M17 15.5981L19.5981 17.0981"
+                                stroke="#082431" stroke-width="1.5" />
                         </svg>
                         <span class="ml-4">Edit Profile</span>
                     </a>
                 </li>
-
             @endif
-            
             <li class="relative px-6 py-3">
                 <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
                     href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect width="24" height="24" fill="white" />
@@ -351,16 +322,12 @@
                             stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
                         <path d="M9.5 12L20 12" stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
                     </svg>
-
                     <span class="ml-4">Logout</span>
-
                     <form action="{{ route('logout') }}" id="logout-form" method="POST" style="display: none">
                         @csrf
                     </form>
                 </a>
             </li>
-
-            
         </ul>
     </div>
 </aside>
