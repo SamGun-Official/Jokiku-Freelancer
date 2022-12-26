@@ -22,12 +22,15 @@ class LandingController extends Controller
      */
     public function index()
     {
-        // $services = Service::orderBy('created_at', 'desc')->get();
         // $services = Service::where('status', '1')->orderBy('created_at', 'desc')->get();
-        $services = Service::where([
-            ['status', '1'],
-            ['users_id', '<>', auth()->user()->id],
-        ])->orderBy('created_at', 'desc')->get();
+        if(auth()->user() == null) {
+            $services = Service::orderBy('created_at', 'desc')->get();
+        } else {
+            $services = Service::where([
+                ['status', '1'],
+                ['users_id', '<>', auth()->user()->id],
+            ])->orderBy('created_at', 'desc')->get();
+        }
 
         return view('pages.landing.index', compact('services'));
     }
@@ -102,10 +105,14 @@ class LandingController extends Controller
     public function explore()
     {
         // User cannot see their own services.
-        $services = Service::where([
-            ['status', '1'],
-            ['users_id', '<>', auth()->user()->id],
-        ])->orderBy('created_at', 'desc')->get();
+        if(auth()->user() == null) {
+            $services = Service::orderBy('created_at', 'desc')->get();
+        } else {
+            $services = Service::where([
+                ['status', '1'],
+                ['users_id', '<>', auth()->user()->id],
+            ])->orderBy('created_at', 'desc')->get();
+        }
 
         return view('pages.landing.explore', compact('services'));
     }
