@@ -18,14 +18,12 @@ return new class extends Migration
             $table->foreignId('buyer_id')->nullable()->index('fk_order_buyer_to_users');
             $table->foreignId('freelancer_id')->nullable()->index('fk_order_freelancer_to_users');
             $table->foreignId('service_id')->nullable()->index('fk_order_to_service');
-
             // $table->integer('buyer_id')->nullable();
             // $table->integer('freelancer_id')->nullable();
             // $table->integer('service_id')->nullable();
             $table->longText('file')->nullable();
             $table->longText('note')->nullable();
-            $table->date('expired')->nullable();
-
+            $table->integer('status_bayar')->nullable()->default(0);;
             $table->foreignId('order_status_id')->nullable()->index('fk_order_to_order_status');
             // $table->integer('order_status_id')->nullable();
             $table->softDeletes();
