@@ -8,30 +8,30 @@
             <div class="grid w-full gap-5 px-10 mx-auto md:grid-cols-12">
                 <div class="col-span-12">
                     <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
-                        Edit Your Services
+                        Edit Your Service
                     </h2>
                     <p class="text-sm text-gray-400">
                         Edit the services you provide
                     </p>
                 </div>
             </div>
+            <!-- breadcrumb -->
+            <nav class="mx-10 mt-8 text-sm" aria-label="Breadcrumb">
+                <ol class="inline-flex p-0 list-none">
+                    <li class="flex items-center">
+                        <a href="{{ route('member.service.index') }}" class="text-gray-400">My Services</a>
+                        <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 320 512">
+                            <path
+                                d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" />
+                        </svg>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="#" class="font-medium">Edit Your Service</a>
+                    </li>
+                </ol>
+            </nav>
         </div>
-        <!-- breadcrumb -->
-        <nav class="mx-10 mt-8 text-sm" aria-label="Breadcrumb">
-            <ol class="inline-flex p-0 list-none">
-                <li class="flex items-center">
-                    <a href="{{ route('member.service.index') }}" class="text-gray-400">My Services</a>
-                    <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 320 512">
-                        <path
-                            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" />
-                    </svg>
-                </li>
-                <li class="flex items-center">
-                    <a href="#" class="font-medium">Edit Your Service</a>
-                </li>
-            </ol>
-        </nav>
         <section class="container px-6 mx-auto mt-5">
             <div class="grid gap-5 md:grid-cols-12">
                 <main class="col-span-12 p-4 md:pt-0">
@@ -44,21 +44,20 @@
                                 <div class="px-4 py-5 sm:p-6">
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6">
-                                            <label for="title" class="block mb-3 font-medium text-gray-700 text-md">Judul
-                                                Service</label>
+                                            <label for="title"
+                                                class="block mb-3 font-medium text-gray-700 text-md">Service Name</label>
                                             <input placeholder="Service apa yang ingin kamu tawarkan?" type="text"
                                                 name="title" id="title" autocomplete="title"
                                                 class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
                                                 value="{{ $service->title ?? '' }}" required>
-
                                             @if ($errors->has('title'))
                                                 <p class="text-red-500 mb-3 text-sm">{{ $errors->first('title') }}</p>
                                             @endif
                                         </div>
                                         <div class="col-span-6">
                                             <label for="description"
-                                                class="block mb-3 font-medium text-gray-700 text-md">Deskripsi
-                                                Service</label>
+                                                class="block mb-3 font-medium text-gray-700 text-md">Service
+                                                Description</label>
                                             <input placeholder="Jelaskan Service apa yang kamu tawarkan?" type="text"
                                                 name="description" id="description" autocomplete="description"
                                                 class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
@@ -69,10 +68,10 @@
                                         </div>
                                         <div class="col-span-6">
                                             <label for="advantage-services"
-                                                class="block mb-2 font-medium text-gray-700 text-md">Keunggulan Service
-                                                kamu</label>
+                                                class="block mb-2 font-medium text-gray-700 text-md">The Advantages of This
+                                                Service</label>
                                             <p class="block mb-3 text-sm text-gray-700">
-                                                Hal apa aja yang didapatkan dari service kamu?
+                                                What are the advantages you offered in this service?
                                             </p>
                                             @forelse ($advantage_service as $advantage_item)
                                                 <input placeholder="Keunggulan Service" type="text"
@@ -87,19 +86,19 @@
                                             <button type="button"
                                                 class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                                                 id="addServicesRow">
-                                                Tambahkan Keunggulan +
+                                                Add More Advantages +
                                             </button>
                                         </div>
                                         <div class="col-span-6 -mb-6">
                                             <label for="estimation & revision"
-                                                class="block mb-3 font-medium text-gray-700 text-md">Estimasi Service &
-                                                Jumlah Revisi</label>
+                                                class="block mb-3 font-medium text-gray-700 text-md">Time Estimation (In
+                                                Days)</label>
                                         </div>
-                                        <div class="col-span-6 sm:col-span-3">
+                                        <div class="col-span-12 sm:col-span-6">
                                             <select id="delivery_time" name="delivery_time" autocomplete="delivery_time"
                                                 class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                                 required>
-                                                <option>Butuh Berapa hari service kamu selesai?</option>
+                                                <option>How many days needed to achieve project completion?</option>
                                                 <option value="2"
                                                     {{ $service->delivery_time == '2' ? 'selected' : '' }}>2 Hari</option>
                                                 <option value="4"
@@ -114,7 +113,7 @@
                                                 </option>
                                             </select>
                                         </div>
-                                        <div class="col-span-6 sm:col-span-3">
+                                        {{-- <div class="col-span-6 sm:col-span-3">
                                             <select id="revision_limit" name="revision_limit" autocomplete="revision_limit"
                                                 class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                                 required>
@@ -135,10 +134,10 @@
                                                     {{ $service->revision_limit == '12' ? 'selected' : '' }}>12 Revisi
                                                 </option>
                                             </select>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-span-6">
-                                            <label for="price" class="block mb-3 font-medium text-gray-700 text-md">Harga
-                                                Service Kamu</label>
+                                            <label for="price" class="block mb-3 font-medium text-gray-700 text-md">Your
+                                                Service Price</label>
                                             <input placeholder="Total Harga Service Kamu" type="number" name="price"
                                                 id="price" autocomplete="price"
                                                 class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
@@ -162,7 +161,7 @@
                                                         <input placeholder="Thumbnail" type="file"
                                                             name="{{ 'thumbnails[' . $thumbnail_item->id . ']' }}"
                                                             id="thumbnails" autocomplete="thumbnails"
-                                                            class="block w-full py-3 pl-5 mt-3 border-gray-300 rounded-md shadow-sm focus:ring-green-500 sm:text-sm">
+                                                            class="block w-full py-3 mt-3 border-gray-300 rounded-md shadow-sm focus:ring-green-500 sm:text-sm">
                                                     </div>
                                                 @empty
                                                 @endforelse
@@ -171,13 +170,13 @@
                                             <button type="button"
                                                 class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                                                 id="addThumbnailRow">
-                                                Tambahkan Gambar +
+                                                Add More Pictures +
                                             </button>
                                         </div>
                                         <div class="col-span-6">
                                             <label for="advantage-users"
-                                                class="block mb-3 font-medium text-gray-700 text-md">Keunggulan
-                                                kamu</label>
+                                                class="block mb-3 font-medium text-gray-700 text-md">Your
+                                                Advantages</label>
                                             @forelse ($advantage_user as $advantage_user_item)
                                                 <input placeholder="Keunggulan Kamu" type="text"
                                                     name="{{ 'advantage-users[' . $advantage_user_item->id . ']' }}"
@@ -191,13 +190,15 @@
                                             <button type="button"
                                                 class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                                                 id="addAdvantagesRow">
-                                                Tambahkan Keunggulan +
+                                                Add More Advantages +
                                             </button>
                                         </div>
                                         <div class="col-span-6">
-                                            <label for="note"
+                                            {{-- <label for="note"
                                                 class="block mb-3 font-medium text-gray-700 text-md">Note <span
-                                                    class="text-gray-400">(Optional)</span></label>
+                                                    class="text-gray-400">(Optional)</span></label> --}}
+                                            <label for="note"
+                                                class="block mb-3 font-medium text-gray-700 text-md">Note</label>
                                             <input placeholder="Hal yang ingin disampaikan oleh kamu?" type="text"
                                                 name="note" id="note" autocomplete="note"
                                                 class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
@@ -207,9 +208,11 @@
                                             @endif
                                         </div>
                                         <div class="col-span-6">
-                                            <label for="taglines"
+                                            {{-- <label for="taglines"
                                                 class="block mb-3 font-medium text-gray-700 text-md">Tagline <span
-                                                    class="text-gray-400">(Optional)</span></label>
+                                                    class="text-gray-400">(Optional)</span></label> --}}
+                                            <label for="taglines"
+                                                class="block mb-3 font-medium text-gray-700 text-md">Tagline</label>
                                             @forelse ($tagline as $tagline_item)
                                                 <input placeholder="Tagline" type="text"
                                                     name="{{ 'taglines[' . $tagline_item->id . ']' }}" id="taglines"
@@ -223,7 +226,7 @@
                                             <button type="button"
                                                 class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                                                 id="addTaglineRow">
-                                                Tambahkan Tagline +
+                                                Add More Tagline +
                                             </button>
                                         </div>
                                         <div class="col-span-6">

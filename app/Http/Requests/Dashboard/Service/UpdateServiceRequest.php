@@ -36,9 +36,9 @@ class UpdateServiceRequest extends FormRequest
             'delivery_time' => [
                 'required', 'integer', 'max:100',
             ],
-            'revision_limit' => [
-                'required', 'integer', 'max:100',
-            ],
+            // 'revision_limit' => [
+            //     'required', 'integer', 'max:100',
+            // ],
             'price' => [
                 'required', 'string',
             ],
