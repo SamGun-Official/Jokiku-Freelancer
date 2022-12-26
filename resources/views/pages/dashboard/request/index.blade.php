@@ -81,7 +81,7 @@
                                             <td class="w-1/5 pr-7 py-5">
                                                 <div class="flex items-center text-sm">
                                                     <div class="relative w-10 h-10 mr-3 rounded-full md:block">
-                                                        @if ($order->service->thumbnail_service[0]->thumbnail != null)
+                                                        @if (count($order->service->thumbnail_service) > 0)
                                                             <img class="object-cover w-full h-full rounded"
                                                                 src="{{ url(Storage::url($order->service->thumbnail_service[0]->thumbnail)) }}"
                                                                 alt="photo freelancer" loading="lazy" />
