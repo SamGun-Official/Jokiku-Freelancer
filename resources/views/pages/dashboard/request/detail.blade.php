@@ -215,7 +215,7 @@
                                             @else
                                                 See Review
                                             @endif
-                                        </a href="{{ route('member.request.rating', $order->id) }}">
+                                        </a>
                                     @endif
                                 </div>
                             </div>

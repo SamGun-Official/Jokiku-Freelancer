@@ -25,8 +25,11 @@ class RequestController extends Controller
      */
     public function index()
     {
-        $orders = Order::where('buyer_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
-        $reviews = Order::where('buyer_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        $orders = Order::where('buyer_id', Auth::user()->id)
+            ->leftJoin('review', 'review.order_id', '=', 'order.id')
+            ->select(['order.*', 'rating', 'comment'])
+            ->orderBy('order.created_at', 'desc')->get();
+        $reviews = Review::whereIn('order_id', $orders->pluck('id'))->get();
 
         return view('pages.dashboard.request.index', compact('orders', 'reviews'));
     }
