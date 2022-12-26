@@ -31,9 +31,14 @@
                 </div>
                 <div class="col-span-4 lg:text-right">
                     <div class="relative">
-                        <button class="px-4 py-2 mt-2 text-left text-white bg-red-400 rounded-xl">
+                        <a href="{{ route('member.service.edit', $service->id) }}"
+                            class="inline-flex justify-center px-4 py-2 mr-2 text-sm font-medium text-white border border-transparent rounded-lg shadow-sm bg-serv-email hover:bg-serv-email-text focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-serv-email">
+                            Edit Service
+                        </a>
+                        {{-- <a href="{{ route('member.service.delete', $service->id) }}"
+                            class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-lg shadow-sm bg-red-400 hover:bg-serv-email-text focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-serv-email">
                             Delete Service
-                        </button>
+                        </a> --}}
                     </div>
                 </div>
             </div>
@@ -42,7 +47,7 @@
             <div class="grid gap-5 md:grid-cols-12">
                 <main class="col-span-12 p-4 md:pt-0">
                     <div class="bg-white rounded-xl">
-                        <section class="pt-6 pb-20 mx-8 w-auth">
+                        <section class="py-6 mx-8 w-auth">
                             <div class="grid gap-5 md:grid-cols-12">
                                 <main class="p-4 lg:col-span-7 md:col-span-12">
                                     <span
@@ -91,9 +96,9 @@
                                         </div>
                                     </div>
                                     @if (count($thumbnail) > 0)
-                                        <div class="p-3 my-4 bg-gray-100 rounded-lg image-gallery" x-data="gallery({{ '"' . url(Storage::url($thumbnail[0]->thumbnail)) . '"' }})">
+                                        <div class="p-3 mt-4 bg-gray-100 rounded-lg image-gallery" x-data="gallery({{ '"' . url(Storage::url($thumbnail[0]->thumbnail)) . '"' }})">
                                         @else
-                                            <div class="p-3 my-4 bg-gray-100 rounded-lg image-gallery"
+                                            <div class="p-3 mt-4 bg-gray-100 rounded-lg image-gallery"
                                                 x-data="gallery()">
                                     @endif
                                     <img :src="featured" alt="" class="rounded-lg cursor-pointer w-full"
@@ -126,10 +131,9 @@
                                     </div>
                             </div>
                 </main>
-                <aside class="p-4 lg:col-span-5 md:col-span-12 md:pt-0">
-                    <div class="mb-4 border rounded-lg border-serv-testimonial-border">
-                        <div
-                            class="flex items-center px-2 py-3 mx-4 mt-4 border rounded-full border-serv-testimonial-border">
+                <aside class="p-4 lg:col-span-5 md:col-span-12">
+                    <div class="mb-8 border rounded-lg border-gray-300">
+                        <div class="flex items-center px-2 py-3 mx-4 mt-4 border rounded-full  border-gray-300">
                             <div class="flex-1 text-sm font-medium text-center">
                                 <svg class="inline" width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -139,23 +143,8 @@
                                 </svg>
                                 {{ $service->delivery_time ?? '' }} Days Delivery
                             </div>
-                            <div class="flex-1 text-sm font-medium text-center">
-                                <svg class="inline" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="24" height="24" fill="white" />
-                                    <path d="M19 13C19 15 19 18.5 14.6552 18.5C9.63448 18.5 6.12644 18.5 5 18.5"
-                                        stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
-                                    <path d="M4 11.5C4 9.5 4 6 8.34483 6C13.2455 6 16.8724 6 18 6" stroke="#082431"
-                                        stroke-width="1.5" stroke-linecap="round" />
-                                    <path d="M7 21.5L4.14142 18.6414C4.06332 18.5633 4.06332 18.4247 4.14142 18.3586L7 15.5"
-                                        stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
-                                    <path d="M16 3L18.8586 5.85858C18.9247 5.92468 18.9247 6.06332 18.8586 6.14142L16 9"
-                                        stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
-                                </svg>
-                                {{ $service->revision_limit ?? '' }} Revision Limit
-                            </div>
                         </div>
-                        <div class="px-4 pt-4 pb-2 features-list">
+                        <div class="p-4 features-list">
                             <ul class="mb-4 text-sm list-check">
                                 <li class="pl-10 my-4">3 Pages</li>
                                 <li class="pl-10 my-4">Customized Design</li>
@@ -181,33 +170,33 @@
                         <div>
                             <!-- The tabs content -->
                             <div class="leading-8 text-md">
-                                <h2 class="text-xl font-semibold">About This <span
-                                        class="text-serv-button">Services</span></h2>
+                                <h2 class="text-xl font-semibold">About This <span class="text-serv-button">Service</span>
+                                </h2>
                                 <div class="mt-4 mb-8 content-description">
-                                    <p>
+                                    <p style="text-align: justify;">
                                         {{ $service->description ?? '' }}
                                     </p>
                                 </div>
-                                <h3 class="my-4 text-lg font-semibold">Why choose my Service?</h3>
-                                <ul class="mb-4 list-check">
+                                <h3 class="my-4 text-lg font-semibold">Why choose this service?</h3>
+                                <ul class="mb-8 list-check">
                                     @forelse ($advantage_service as $advantage_service_item)
-                                        <li class="pl-10 my-2">
+                                        <li class="pl-10 my-1">
                                             {{ $advantage_service_item->advantage ?? '' }}</li>
                                     @empty
                                         {{-- empty --}}
                                     @endforelse
                                 </ul>
-                                <p class="mb-4">
-                                    {{ $service->note ?? '' }}
+                                <p class="mb-4 text-lg font-semibold">
+                                    Note about this service:
                                 </p>
-                                <p class="mb-4 font-medium">
-                                    Contact me to get started!
+                                <p class="mb-8">
+                                    {{ $service->note ?? '' }}
                                 </p>
                             </div>
                         </div>
                     </div>
                 </aside>
-                <div class="p-4 lg:col-span-6 md:col-span-12">
+                {{-- <div class="p-4 lg:col-span-6 md:col-span-12">
                     <button type="submit"
                         class="inline-flex justify-center px-3 py-2 mb-2 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                         Programming & Tech
@@ -216,13 +205,7 @@
                         class="inline-flex justify-center px-3 py-2 mb-2 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                         Website Developer
                     </button>
-                </div>
-                <div class="p-4 md:text-right lg:col-span-6 md:col-span-12">
-                    <a href="{{ route('member.service.edit', $service->id) }}"
-                        class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-lg shadow-sm bg-serv-email hover:bg-serv-email-text focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-serv-email">
-                        Edit Service
-                    </a>
-                </div>
+                </div> --}}
             </div>
         </section>
         </div>

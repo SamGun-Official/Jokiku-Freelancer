@@ -261,13 +261,12 @@ class ServiceController extends Controller
                 }
             }
 
-            toast()->success('Update has been success');
+            toast()->success('Update service successful!');
             DB::commit();
             return redirect()->route('member.service.index');
         } catch (\Throwable $th) {
-            dd($th);
+            toast('Failed to update!', 'error');
             DB::rollBack();
-            toast('Failed to update', 'error');
             return back();;
         }
     }
@@ -281,5 +280,27 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         return abort(404);
+    }
+
+    public function delete($id)
+    {
+        try {
+            DB::beginTransaction();
+
+            $service = Service::withTrashed()->find($id);
+            if ($service->trashed()) {
+                $result = $service->restore();
+            } else {
+                $result = $service->delete();
+            }
+
+            toast()->success('Delete service successful!');
+            DB::commit();
+            return redirect()->route('member.service.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            toast('Failed to update!', 'error');
+            return back();;
+        }
     }
 }

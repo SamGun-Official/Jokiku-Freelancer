@@ -50,7 +50,7 @@ class Service extends Model
 
     public function thumbnail_service()
     {
-        return $this->hasMany(ThumbnailService::class, 'service_id');
+        return $this->hasMany(ThumbnailService::class, 'service_id')->withTrashed();
     }
 
     public function tagline()

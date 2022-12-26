@@ -41,6 +41,7 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sa
 
     // Service
     Route::resource('service', ServiceController::class);
+    Route::get('service_delete/{id}', [ServiceController::class, 'delete'])->name('service.delete');
 
     // Request
     Route::resource('request', RequestController::class);
