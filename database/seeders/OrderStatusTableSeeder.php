@@ -22,7 +22,7 @@ class OrderStatusTableSeeder extends Seeder
                 'updated_at'        => date('Y-m-d h:i:s'),
             ],
             [
-                'name'              => "In Progress",
+                'name'              => "On Progress",
                 'created_at'        => date('Y-m-d h:i:s'),
                 'updated_at'        => date('Y-m-d h:i:s'),
             ],
