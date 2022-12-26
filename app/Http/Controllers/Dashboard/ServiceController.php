@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Dashboard\Service\StoreServiceRequest;
 use App\Http\Requests\Dashboard\Service\UpdateServiceRequest;
+use App\Models\Order;
 use App\Models\Review;
 use File;
 
@@ -117,9 +118,19 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Service $service)
     {
-        return abort(404);
+        $services = Service::where('id', $service['id'])->first();
+        $thumbnail = ThumbnailService::where('service_id', $service['id'])->get();
+        $advantage_service = AdvantageService::where('service_id', $service['id'])->get();
+        $advantage_user = AdvantageUser::where('service_id', $service['id'])->get();
+        $tagline = Tagline::where('service_id', $service['id'])->get();
+        $reviews = Review::whereIn('order_id', Order::where([
+            ['freelancer_id', auth()->user()->id],
+            ['service_id', $service['id']],
+        ])->pluck('id'))->get();
+
+        return view('pages.dashboard.service.detail', compact('service', 'services', 'thumbnail', 'advantage_service', 'advantage_user', 'tagline', 'reviews'));
     }
 
     /**
