@@ -67,9 +67,9 @@
                                         <div class="col-span-6">
                                             <label for="advantage-service"
                                                 class="block mb-2 font-medium text-gray-700 text-md">Keunggulan Service
-                                                kamu</label>
+                                                Kamu</label>
                                             <p class="block mb-3 text-sm text-gray-700">
-                                                Hal apa aja yang didapakan dari service kamu?
+                                                Hal apa aja yang didapatkan dari service kamu?
                                             </p>
                                             <input placeholder="Keunggulan Service 1" type="text"
                                                 name="advantage-service[]" id="advantage-service"
@@ -95,14 +95,13 @@
                                         </div>
                                         <div class="col-span-6 -mb-6">
                                             <label for="estimation & revision"
-                                                class="block mb-3 font-medium text-gray-700 text-md">Estimasi Service &
-                                                Jumlah Revisi</label>
+                                                class="block mb-3 font-medium text-gray-700 text-md">Estimasi Service</label>
                                         </div>
-                                        <div class="col-span-6 sm:col-span-3">
+                                        <div class="col-span-12 sm:col-span-6">
                                             <select id="delivery_time" name="delivery_time" autocomplete="delivery_time"
                                                 class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                                 required>
-                                                <option>Butuh Berapa hari service kamu selesai?</option>
+                                                <option>Butuh berapa hari service kamu selesai?</option>
                                                 <option value="2">2 Hari</option>
                                                 <option value="4">4 Hari</option>
                                                 <option value="8">8 Hari</option>
@@ -165,7 +164,7 @@
                                         <div class="col-span-6">
                                             <label for="advantage-user"
                                                 class="block mb-3 font-medium text-gray-700 text-md">Keunggulan
-                                                kamu</label>
+                                                Kamu</label>
                                             <input placeholder="Keunggulan Kamu 1" type="text" name="advantage-user[]"
                                                 id="advantage-user" autocomplete="advantage-user"
                                                 class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
@@ -187,8 +186,10 @@
                                         </div>
                                         <div class="col-span-6">
                                             <label for="note"
+                                                class="block mb-3 font-medium text-gray-700 text-md">Note</label>
+                                            {{-- <label for="note"
                                                 class="block mb-3 font-medium text-gray-700 text-md">Note <span
-                                                    class="text-gray-400">(Optional)</span></label>
+                                                    class="text-gray-400">(Optional)</span></label> --}}
                                             <input placeholder="Hal yang ingin disampaikan oleh kamu?" type="text"
                                                 name="note" id="note" autocomplete="note"
                                                 class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
