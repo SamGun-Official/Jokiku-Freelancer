@@ -15,7 +15,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::where('status', '0')->get();
+        $services = Service::all();
+
         return view('pages.admin.master.service', compact('services'));
     }
 
@@ -93,6 +94,7 @@ class ServiceController extends Controller
         toast('Approved', 'success');
         return back();
     }
+
     public function reject($id)
     {
         $service = Service::where('id', $id)->update([
