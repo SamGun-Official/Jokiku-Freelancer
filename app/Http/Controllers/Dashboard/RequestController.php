@@ -61,8 +61,9 @@ class RequestController extends Controller
     public function show($id)
     {
         $order = Order::where('id', $id)->first();
+        $review = Review::where('order_id', $id)->first();
 
-        return view('pages.dashboard.request.detail', compact('order'));
+        return view('pages.dashboard.request.detail', compact('order', 'review'));
     }
 
     /**

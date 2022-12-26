@@ -153,7 +153,9 @@
                                                 </h2>
                                                 @if ($order->status_bayar == 0)
                                                     <p class="text-sm text-gray-400">
-                                                        To download this file, you need to complete the payment<br>by clicking on "Pay" button in this page and<br>download button will appear here
+                                                        To download this file, you need to complete the payment<br>by
+                                                        clicking on "Pay" button in this page and<br>download button will
+                                                        appear here
                                                     </p>
                                                 @endif
                                             @else
@@ -205,6 +207,16 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @if ($order->status_bayar == 1)
+                                        <a href="{{ route('member.request.rating', $order->id) }}"
+                                            class="px-4 py-2 text-left text-white text-center rounded-xl bg-blue-500 inline-block text-sm">
+                                            @if ($review == null)
+                                                Add Review
+                                            @else
+                                                See Review
+                                            @endif
+                                        </a href="{{ route('member.request.rating', $order->id) }}">
+                                    @endif
                                 </div>
                             </div>
                             <div class="pt-4 text-right">
