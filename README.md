@@ -15,3 +15,7 @@ Copy the example env file and make the required configuration changes in the .en
 Generate a new application key
 
     php artisan key:generate
+
+Create a Storage Link
+
+    php artisan storage:link
